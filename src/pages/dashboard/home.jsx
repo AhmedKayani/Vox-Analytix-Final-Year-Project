@@ -24,7 +24,7 @@ import {
 import { StatisticsCard } from "@/widgets/cards";
 
 // This import is used for the charts
-import { StatisticsChart, DoughnutChart, LineChart } from "@/widgets/charts";
+import { Table, DoughnutChart, LineChart } from "@/widgets/charts";
 
 // Chart Config imports
 import { doughnutChartConfig } from "@/configs/chartjs-config";
@@ -70,8 +70,9 @@ export function Home() {
         <LineChart />
       </div>
 
-      <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <Card className="overflow-hidden xl:col-span-2">
+      {/* This div contains the table of latest analysis results */}
+      <div className="mb-4 w-full">
+        {/* <Card className="overflow-hidden xl:col-span-2">
           <CardHeader
             floated={false}
             shadow={false}
@@ -254,7 +255,8 @@ export function Home() {
               )
             )}
           </CardBody>
-        </Card>
+        </Card> */}
+        <Table />
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export function LineChart() {
         fill: true,
         borderColor: "rgb(75, 192, 192)",
         pointBorderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
+        tension: 0.4,
         backgroundColor: ["pink", "orange", "grey"],
       },
     ],
@@ -38,7 +38,7 @@ export function LineChart() {
 
   const options = {
     plugins: {
-      legend: true,
+      legend: false,
     },
     scales: {
       y: {
@@ -49,14 +49,16 @@ export function LineChart() {
   };
 
   return (
-    <Card className="rounded-lg bg-white p-5 shadow-md xl:col-span-2">
-      <CardHeader color="blue">
-        <Typography color="white" className="text-lg">
+    <Card className="w-full rounded-lg bg-white p-5 shadow-md xl:col-span-2">
+      <CardHeader floated={false} shadow={false} variant="gradient">
+        <Typography color="black" className="text-lg">
           Call Analysis Trend
         </Typography>
       </CardHeader>
-      <CardBody>
-        <Line data={data} options={options} />
+      <CardBody className="w-full">
+        <div className="w-full">
+          <Line data={data} options={options} />
+        </div>
       </CardBody>
     </Card>
   );
