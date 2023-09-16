@@ -19,18 +19,18 @@ import {
   EllipsisVerticalIcon,
   ArrowUpIcon,
 } from "@heroicons/react/24/outline";
+
 // This import is used for stats cards like the one that says "Total Calls Analyzed", "Most Common Emotion" etc.
 import { StatisticsCard } from "@/widgets/cards";
 
 // This import is used for the charts
-import { StatisticsChart } from "@/widgets/charts";
+import { StatisticsChart, DoughnutChart, LineChart } from "@/widgets/charts";
 
-// React chartjs 2 Library
-import { Chart as ChartJS, ArcElement, Legend } from "chart.js";
-import { Doughnut, Line } from "react-chartjs-2";
-import { LineChart } from "@/widgets/charts";
-
+// Chart Config imports
 import { doughnutChartConfig } from "@/configs/chartjs-config";
+
+// Chart Data imports
+import { doughnutChartData } from "@/data/doughnut-charts-data";
 
 import {
   statisticsCardsData,
@@ -39,41 +39,7 @@ import {
   ordersOverviewData,
 } from "@/data";
 
-import { doughnutChartData } from "@/data/doughnut-charts-data";
-
-ChartJS.register(ArcElement, Legend);
-
 export function Home() {
-  const data = {
-    labels: ["Angry", "Disgust", "Sad"],
-    datasets: [
-      {
-        data: [50, 30, 20],
-        backgroundColor: ["pink", "orange", "grey"],
-        borderWidth: 1,
-        hoverOffset: 4,
-      },
-    ],
-  };
-
-  const options = {
-    type: "doughnut",
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        display: true,
-        position: "bottom",
-      },
-      cutoutPercentage: 80, // Adjust this for the size of the inner circle
-      tooltips: {
-        enabled: true,
-        mode: "index",
-        intersect: true,
-      },
-    },
-  };
-
   return (
     <div className="mt-12">
       {/* This div contains the cards that I will be using to display the general information */}
@@ -97,32 +63,11 @@ export function Home() {
       </div>
       {/* This div contains the charts. The doughnut and line graph chart will be rendered from here */}
       <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
-        {/* {statisticsChartsData.map((props) => (
-          <StatisticsChart
-            key={props.title}
-            {...props}
-            footer={
-              <Typography
-                variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
-              >
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-inherit" />
-                &nbsp;{props.footer}
-              </Typography>
-            }
-          />
-        ))} */}
         {/* This is the doughnut chart */}
-        <Card className="p-5">
-          <Typography
-            variant="medium"
-            className="flex items-center font-normal text-blue-gray-600"
-          >
-            Emotion
-          </Typography>
-          <Doughnut data={data} options={options} />
-        </Card>
+        <DoughnutChart />
+
         {/* This is the line graph chart */}
+        <LineChart />
       </div>
 
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
