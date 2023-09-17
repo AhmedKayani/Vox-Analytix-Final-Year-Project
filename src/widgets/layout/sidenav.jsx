@@ -7,6 +7,8 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
+
+import profilePic from "../../../public/img/ProfilePicture.png";
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
@@ -30,13 +32,22 @@ export function Sidenav({ brandImg, brandName, routes }) {
         }`}
       >
         <Link to="/" className="flex items-center gap-4 py-6 px-8">
-          <Avatar src={brandImg} size="sm" />
-          <Typography
-            variant="h6"
-            color={sidenavType === "dark" ? "white" : "blue-gray"}
-          >
-            {brandName}
-          </Typography>
+          <div className="flex items-center gap-4">
+            <Avatar
+              src={profilePic}
+              alt="avatar"
+              size="lg"
+              variant="circular"
+            />
+            <div>
+              <Typography variant="h6" color="white">
+                Ahmed Shahzad
+              </Typography>
+              <Typography variant="small" color="white" className="font-normal">
+                QA Analyst
+              </Typography>
+            </div>
+          </div>
         </Link>
         <IconButton
           variant="text"
