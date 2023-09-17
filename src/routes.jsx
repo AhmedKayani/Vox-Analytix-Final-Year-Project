@@ -58,7 +58,7 @@ export const routes = [
       {
         icon: <ArrowRightOnRectangleIcon {...icon} />,
         name: "Log Out",
-        path: "/sign-in",
+        path: "/auth/sign-in",
         element: <SignIn />,
       },
     ],
