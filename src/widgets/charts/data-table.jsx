@@ -35,7 +35,7 @@ const TABLE_ROWS = [
   },
 ];
 
-export function Table() {
+export function DataTable() {
   return (
     <Card className="h-full w-full overflow-scroll">
       <table className="w-full min-w-max table-auto text-left">
@@ -115,4 +115,4 @@ export function Table() {
   );
 }
 
-export default Table;
+export default DataTable;

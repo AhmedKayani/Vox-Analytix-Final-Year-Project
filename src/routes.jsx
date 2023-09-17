@@ -1,10 +1,12 @@
 import {
   HomeIcon,
-  UserCircleIcon,
+  UserIcon,
   TableCellsIcon,
   BellIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
+  DocumentArrowUpIcon,
+  QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
@@ -19,48 +21,60 @@ export const routes = [
     pages: [
       {
         icon: <HomeIcon {...icon} />,
-        name: "dashboard",
+        name: "Dashboard Home",
         path: "/home",
         element: <Home />,
       },
       {
-        icon: <UserCircleIcon {...icon} />,
-        name: "profile",
+        icon: <DocumentArrowUpIcon {...icon} />,
+        name: "Upload Audio",
         path: "/profile",
         element: <Profile />,
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "tables",
+        name: "Call History",
         path: "/tables",
         element: <Tables />,
       },
       {
-        icon: <BellIcon {...icon} />,
-        name: "notifactions",
+        icon: <QuestionMarkCircleIcon {...icon} />,
+        name: "Help & Support",
         path: "/notifactions",
         element: <Notifications />,
       },
-    ],
-  },
-  {
-    title: "auth pages",
-    layout: "auth",
-    pages: [
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Account",
+        path: "/notifactions",
+        element: <Notifications />,
+      },
       {
         icon: <ArrowRightOnRectangleIcon {...icon} />,
-        name: "sign in",
+        name: "Log Out",
         path: "/sign-in",
         element: <SignIn />,
       },
-      {
-        icon: <UserPlusIcon {...icon} />,
-        name: "sign up",
-        path: "/sign-up",
-        element: <SignUp />,
-      },
     ],
   },
+  // {
+  //   title: "auth pages",
+  //   layout: "auth",
+  //   pages: [
+  //     {
+  //       icon: <ArrowRightOnRectangleIcon {...icon} />,
+  //       name: "Log Out",
+  //       path: "/sign-in",
+  //       element: <SignIn />,
+  //     },
+  //     {
+  //       icon: <UserPlusIcon {...icon} />,
+  //       name: "sign up",
+  //       path: "/sign-up",
+  //       element: <SignUp />,
+  //     },
+  //   ],
+  // },
 ];
 
 export default routes;

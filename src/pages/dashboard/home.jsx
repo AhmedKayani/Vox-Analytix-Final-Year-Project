@@ -24,7 +24,7 @@ import {
 import { StatisticsCard } from "@/widgets/cards";
 
 // This import is used for the charts
-import { Table, DoughnutChart, LineChart } from "@/widgets/charts";
+import { DataTable, DoughnutChart, LineChart } from "@/widgets/charts";
 
 // Chart Config imports
 import { doughnutChartConfig } from "@/configs/chartjs-config";
@@ -256,7 +256,7 @@ export function Home() {
             )}
           </CardBody>
         </Card> */}
-        <Table />
+        <DataTable />
       </div>
     </div>
   );
