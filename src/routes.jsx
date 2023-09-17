@@ -8,7 +8,13 @@ import {
   DocumentArrowUpIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
+import {
+  Home,
+  UploadAudio,
+  CallHistory,
+  HelpAndSupport,
+  Account,
+} from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -28,26 +34,26 @@ export const routes = [
       {
         icon: <DocumentArrowUpIcon {...icon} />,
         name: "Upload Audio",
-        path: "/profile",
-        element: <Profile />,
+        path: "/upload-audio",
+        element: <UploadAudio />,
       },
       {
         icon: <TableCellsIcon {...icon} />,
         name: "Call History",
-        path: "/tables",
-        element: <Tables />,
+        path: "/call-history",
+        element: <CallHistory />,
       },
       {
         icon: <QuestionMarkCircleIcon {...icon} />,
         name: "Help & Support",
-        path: "/notifactions",
-        element: <Notifications />,
+        path: "/help-and-support",
+        element: <HelpAndSupport />,
       },
       {
         icon: <UserIcon {...icon} />,
         name: "Account",
-        path: "/notifactions",
-        element: <Notifications />,
+        path: "/account",
+        element: <Account />,
       },
       {
         icon: <ArrowRightOnRectangleIcon {...icon} />,
