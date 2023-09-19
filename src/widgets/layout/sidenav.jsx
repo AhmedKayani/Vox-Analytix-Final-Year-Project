@@ -9,6 +9,8 @@ import {
 } from "@material-tailwind/react";
 
 import profilePic from "../../../public/img/ProfilePicture.png";
+import projectLogo from "../../../public/img/logo.png";
+
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
@@ -26,84 +28,97 @@ export function Sidenav({ brandImg, brandName, routes }) {
         openSidenav ? "translate-x-0" : "-translate-x-80"
       } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0`}
     >
-      <div
-        className={`relative border-b ${
-          sidenavType === "dark" ? "border-white/20" : "border-blue-gray-50"
-        }`}
-      >
-        <Link to="/" className="flex items-center gap-4 py-6 px-8">
-          <div className="flex items-center gap-4">
-            <Avatar
-              src={profilePic}
-              alt="avatar"
-              size="lg"
-              variant="circular"
-            />
-            <div>
-              <Typography variant="h6" color="white">
-                Ahmed Shahzad
-              </Typography>
-              <Typography variant="small" color="white" className="font-normal">
-                QA Analyst
-              </Typography>
-            </div>
+      <div className="flex h-full flex-col justify-between">
+        {/* This div contains the avatar and the navigation links */}
+        <div>
+          <div
+            className={`relative border-b ${
+              sidenavType === "dark" ? "border-white/20" : "border-blue-gray-50"
+            }`}
+          >
+            <Link to="/" className="flex items-center gap-4 py-6 px-8">
+              <div className="flex items-center gap-4">
+                <Avatar
+                  src={profilePic}
+                  alt="avatar"
+                  size="lg"
+                  variant="circular"
+                />
+                <div>
+                  <Typography variant="h6" color="white">
+                    Ahmed Shahzad
+                  </Typography>
+                  <Typography
+                    variant="small"
+                    color="white"
+                    className="font-normal"
+                  >
+                    QA Analyst
+                  </Typography>
+                </div>
+              </div>
+            </Link>
+            <IconButton
+              variant="text"
+              color="white"
+              size="sm"
+              ripple={false}
+              className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
+              onClick={() => setOpenSidenav(dispatch, false)}
+            >
+              <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-white" />
+            </IconButton>
           </div>
-        </Link>
-        <IconButton
-          variant="text"
-          color="white"
-          size="sm"
-          ripple={false}
-          className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
-          onClick={() => setOpenSidenav(dispatch, false)}
-        >
-          <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-white" />
-        </IconButton>
-      </div>
-      <div className="m-4">
-        {routes.map(({ layout, title, pages }, key) => (
-          <ul key={key} className="mb-4 flex flex-col gap-1">
-            {title && (
-              <li className="mx-3.5 mt-4 mb-2">
-                <Typography
-                  variant="small"
-                  color={sidenavType === "dark" ? "white" : "blue-gray"}
-                  className="font-black uppercase opacity-75"
-                >
-                  {title}
-                </Typography>
-              </li>
-            )}
-            {pages.map(({ icon, name, path }) => (
-              <li key={name}>
-                <NavLink to={`/${layout}${path}`}>
-                  {({ isActive }) => (
-                    <Button
-                      variant={isActive ? "gradient" : "text"}
-                      color={
-                        isActive
-                          ? sidenavColor
-                          : sidenavType === "dark"
-                          ? "white"
-                          : "blue-gray"
-                      }
-                      className="flex items-center gap-4 px-4 capitalize"
-                      fullWidth
+          <div className="m-4">
+            {routes.map(({ layout, title, pages }, key) => (
+              <ul key={key} className="mb-4 flex flex-col gap-1">
+                {title && (
+                  <li className="mx-3.5 mt-4 mb-2">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === "dark" ? "white" : "blue-gray"}
+                      className="font-black uppercase opacity-75"
                     >
-                      {icon}
-                      <Typography
-                        color="inherit"
-                        className="font-medium capitalize"
-                      >
-                        {name}
-                      </Typography>
-                    </Button>
-                  )}
-                </NavLink>
-              </li>
+                      {title}
+                    </Typography>
+                  </li>
+                )}
+                {pages.map(({ icon, name, path }) => (
+                  <li key={name}>
+                    <NavLink to={`/${layout}${path}`}>
+                      {({ isActive }) => (
+                        <Button
+                          variant={isActive ? "gradient" : "text"}
+                          color={
+                            isActive
+                              ? sidenavColor
+                              : sidenavType === "dark"
+                              ? "white"
+                              : "blue-gray"
+                          }
+                          className="flex items-center gap-4 px-4 capitalize"
+                          fullWidth
+                        >
+                          {icon}
+                          <Typography
+                            color="inherit"
+                            className="font-medium capitalize"
+                          >
+                            {name}
+                          </Typography>
+                        </Button>
+                      )}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
-        ))}
+          </div>
+        </div>
+        {/* This div contains the footer logo */}
+        {/* <div className="">
+          <img src={projectLogo} alt="Project Logo" className="mx-auto w-32" />
+        </div> */}
       </div>
     </aside>
   );
@@ -111,7 +126,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
 
 Sidenav.defaultProps = {
   brandImg: "/img/logo-ct.png",
-  brandName: "Material Tailwind React",
+  brandName: "Call Analysis",
 };
 
 Sidenav.propTypes = {

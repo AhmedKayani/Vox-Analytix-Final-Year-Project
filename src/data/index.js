@@ -10,4 +10,6 @@ export * from "@/data/authors-table-data";
 // New charts data
 export * from "@/data/doughnut-charts-data";
 
-export * from "@/data/call-history-statistics-cards-data"
+export * from "@/data/call-history-statistics-cards-data";
+
+export * from "@/data/upload-audio-faq";

@@ -20,16 +20,14 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import { ProfileInfoCard, MessageCard } from "@/widgets/cards";
+import { DropzoneUpload, AccordionGuide } from "@/widgets/layout";
 import { platformSettingsData, conversationsData, projectsData } from "@/data";
 
 export function UploadAudio() {
   return (
     <>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url(https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80)] bg-cover	bg-center">
-        <div className="absolute inset-0 h-full w-full bg-blue-500/50" />
-      </div>
-      <Card className="mx-3 -mt-16 mb-6 lg:mx-4">
-        <CardBody className="p-4">
+      <Card className="mx-auto mt-12 mb-6 h-fit lg:mx-4">
+        {/* <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between gap-6">
             <div className="flex items-center gap-6">
               <Avatar
@@ -211,8 +209,10 @@ export function UploadAudio() {
               )}
             </div>
           </div>
-        </CardBody>
+        </CardBody> */}
+        <DropzoneUpload />
       </Card>
+      <AccordionGuide className="w-full lg:w-1/2" />
     </>
   );
 }
