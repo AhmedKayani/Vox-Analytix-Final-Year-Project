@@ -34,14 +34,10 @@ export function AccordionGuide() {
               open === index + 1 ? "text-blue-500 hover:!text-blue-700" : ""
             }`}
           >
-            <Typography className="text-sm font-semibold md:text-lg ">
-              {question}
-            </Typography>
+            <Typography variant="h6">{question}</Typography>
           </AccordionHeader>
           <AccordionBody className="pt-0">
-            <Typography className="text-xs font-normal leading-relaxed md:text-base">
-              {answer}
-            </Typography>
+            <Typography variant="small">{answer}</Typography>
           </AccordionBody>
         </Accordion>
       ))}

@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
 
+import { CloudArrowUpIcon } from "@heroicons/react/24/solid";
+
 import { Typography, Card, Button } from "@material-tailwind/react";
 
 import { useDropzone } from "react-dropzone";
@@ -32,6 +34,10 @@ export function DropzoneUpload(className) {
               Drag and drop an audio file here or click
             </Typography>
           )}
+          <Typography variant="small" color="blue-gray">
+            MP3, file size no more than 2MB
+          </Typography>
+          <CloudArrowUpIcon className="h-10 w-10 text-blue-gray-400 " />
         </div>
       </form>
       <Button
