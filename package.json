@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
     "@heroicons/react": "2.0.12",
     "@material-tailwind/react": "1.2.4",
+    "@mui/icons-material": "^5.14.9",
     "apexcharts": "3.35.5",
     "chart.js": "^4.4.0",
     "faker": "^5.5.3",

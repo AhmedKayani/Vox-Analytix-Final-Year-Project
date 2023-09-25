@@ -17,6 +17,8 @@ import {
 } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
+import { Result } from "./widgets/layout";
+
 const icon = {
   className: "w-5 h-5 text-inherit",
 };

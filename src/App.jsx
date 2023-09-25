@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth } from "@/layouts";
+import { Result } from "./widgets/layout";
 
 function App() {
   return (
