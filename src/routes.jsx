@@ -63,6 +63,10 @@ export const routes = [
         path: "/auth/sign-in",
         element: <SignIn />,
       },
+      {
+        path: "/result",
+        element: <Result />,
+      },
     ],
   },
   // {

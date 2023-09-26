@@ -1,9 +1,11 @@
 import React from "react";
 
+import { Progress } from "@/widgets/layout";
+
 export function Result() {
   return (
     <>
-      <h1>Hello world</h1>
+      <Progress />
     </>
   );
 }

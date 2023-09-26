@@ -3,6 +3,8 @@ import React, { useCallback, useState, useEffect } from "react";
 import AudioFileIcon from "@mui/icons-material/AudioFile";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { useNavigate } from "react-router-dom";
+
 import {
   CloudArrowUpIcon,
   InformationCircleIcon,
@@ -18,6 +20,14 @@ export function DropzoneUpload({ className }) {
   const [file, setFile] = useState([]);
   const [rejectedFile, setRejectedFile] = useState();
   const [alert, setAlert] = useState(true);
+
+  const navigate = useNavigate();
+
+  const handleAnalyzeClick = () => {
+    // Perform your analyze function here
+    // Once done, navigate to the Results page
+    navigate("/dashboard/result");
+  };
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     // Resetting the state of rejected files to remove the alert if the user uploads a valid file
@@ -122,6 +132,7 @@ export function DropzoneUpload({ className }) {
       <Button
         variant="gradient"
         className="mt-6 inline-flex items-center justify-end gap-3"
+        onClick={handleAnalyzeClick}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
