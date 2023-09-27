@@ -22,9 +22,6 @@ export function Sidenav({ brandImg, brandName, routes }) {
     transparent: "bg-transparent",
   };
 
-  const updatedRoutes = routes[0].pages;
-  console.log(updatedRoutes);
-
   return (
     <aside
       className={`${sidenavTypes[sidenavType]} ${

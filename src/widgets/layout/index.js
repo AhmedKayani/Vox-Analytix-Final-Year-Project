@@ -6,4 +6,7 @@ export * from "@/widgets/layout/navbar";
 export * from "@/widgets/layout/dropzone-upload";
 export * from "@/widgets/layout/accordion-guide";
 export * from "@/widgets/layout/progress";
-export * from "@/widgets/layout/result";
+export * from "@/widgets/layout/audio-player";
+export * from "@/widgets/layout/transcription-box";
+export * from "@/widgets/layout/emotions-detected";
+export * from "@/widgets/layout/result-form";

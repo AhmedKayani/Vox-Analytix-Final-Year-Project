@@ -14,10 +14,9 @@ import {
   CallHistory,
   HelpAndSupport,
   Account,
+  Result,
 } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
-
-import { Result } from "./widgets/layout";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -64,7 +63,8 @@ export const routes = [
         element: <SignIn />,
       },
       {
-        path: "/result",
+        name: "ResulPage",
+        path: "/result-page",
         element: <Result />,
       },
     ],

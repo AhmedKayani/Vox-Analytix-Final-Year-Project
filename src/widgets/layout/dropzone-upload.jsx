@@ -2,7 +2,6 @@ import React, { useCallback, useState, useEffect } from "react";
 
 import AudioFileIcon from "@mui/icons-material/AudioFile";
 import CloseIcon from "@mui/icons-material/Close";
-
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -26,7 +25,7 @@ export function DropzoneUpload({ className }) {
   const handleAnalyzeClick = () => {
     // Perform your analyze function here
     // Once done, navigate to the Results page
-    navigate("/dashboard/result");
+    navigate("/dashboard/result-page");
   };
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
