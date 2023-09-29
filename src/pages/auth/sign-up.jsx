@@ -13,6 +13,41 @@ import {
   Option,
 } from "@material-tailwind/react";
 
+/**
+ *
+ * SignUp Component
+ *
+ * The SignUp component is a React component that renders a sign-up form, including:
+ * - Background image (img)
+ * - Sign-up form (Card) with:
+ *   - Header (CardHeader)
+ *   - Body (CardBody) with form elements:
+ *     - Name, email, and password input (Input)
+ *     - Role selection (Select) with options (Option)
+ *     - Terms and conditions agreement (Checkbox)
+ *   - Footer (CardFooter) with:
+ *     - Submit button (Button)
+ *     - Text (Typography)
+ *     - Navigation link (Link) to the sign-in page
+ *
+ * Props:
+ * - This component does not accept any props.
+ *
+ * Dependencies:
+ * The SignUp component depends on the following libraries:
+ * - react
+ * - @mui/material
+ * - @mui/icons-material
+ * - react-router-dom
+ *
+ * Notes:
+ * The SignUp component uses the Card component from the @mui/material library to display the sign-up form.
+ * - The SignUp component uses the Input, Select, Checkbox, Button, Typography, and Link components from the @mui/material library to display the form elements.
+ * - The SignUp component uses the CardHeader, CardBody, and CardFooter components to display the header, body, and footer of the Card component.
+ * - The SignUp component uses an image component to display a background image.
+ *
+ **/
+
 export function SignUp() {
   return (
     <>

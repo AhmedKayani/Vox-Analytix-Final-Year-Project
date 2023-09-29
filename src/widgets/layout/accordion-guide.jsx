@@ -8,6 +8,49 @@ import {
 
 import { uploadAudioFaq } from "@/data";
 
+/**
+ *
+ * AccordionGuide Component
+ *
+ * The AccordionGuide component is a React component that renders an accordion guide.
+ * It provides information and answers to frequently asked questions in an accordion format.
+ *
+ * Components:
+ * - Accordion: An accordion component that displays the questions and answers.
+ * - AccordionHeader: A component that displays the header of the Accordion component.
+ * - AccordionBody: A component that displays the body of the Accordion component.
+ * - Typography: A component that displays text.
+ *
+ * Props:
+ * The AccordionGuide component does not accept any props.
+ *
+ * Dependencies:
+ * - This component relies on the following libraries:
+ *   - react
+ *   - @mui/material
+ *   - @mui/icons-material
+ *
+ * Notes:
+ * - The AccordionGuide component uses the Accordion, AccordionHeader, AccordionBody, and Typography components
+ *   from the @mui/material library to create an accordion-style guide.
+ * - It populates the questions and answers in the accordion using the data provided in the uploadAudioFaq array.
+ *
+ * Example Usage:
+ * ```jsx
+ * import AccordionGuide from './AccordionGuide';
+ *
+ * const uploadAudioFaq = [
+ *   { question: 'How do I upload audio files?', answer: 'To upload audio, navigate to the Upload Audio page...' },
+ *   { question: 'What file formats are supported?', answer: 'Currently, we support MP3, WAV, and AAC formats.' },
+ *   // Add more FAQ items as needed
+ * ];
+ *
+ * // Inside a React component's render method:
+ * <AccordionGuide uploadAudioFaq={uploadAudioFaq} />
+ * ```
+ *
+ **/
+
 const CUSTOM_ANIMATION = {
   mount: { scale: 1 },
   unmount: { scale: 0.9 },

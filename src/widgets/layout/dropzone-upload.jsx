@@ -9,11 +9,23 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 
-// import { CancelIcon } from "@mui/icons-material/Cancel";
-
 import { Typography, Card, Button, Alert } from "@material-tailwind/react";
 
 import { useDropzone } from "react-dropzone";
+
+/**
+ *
+ * This is a React functional component called DropzoneUpload. It is used to upload an audio file and display its name and a preview.
+ *
+ * The component uses the useState hook to manage the state of the uploaded file and the rejected file. It also uses the useNavigate hook from the react-router-dom library to navigate to the results page after the analyze function is performed.
+ *
+ * The useDropzone hook is used to handle the file upload. It accepts an onDrop function that is called when a file is dropped onto the dropzone. The accept property specifies the accepted file types, and the maxSize and maxFiles properties specify the maximum file size and number of files that can be uploaded.
+ *
+ * The removeFile function is used to remove a file from the state when the user clicks the cross button.
+ *
+ * The component renders a form with a dropzone, a preview of the uploaded file, and a button to analyze the file. If the file is rejected, an alert is displayed with the reason for rejection.
+ *
+ **/
 
 export function DropzoneUpload({ className }) {
   const [file, setFile] = useState([]);

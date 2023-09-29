@@ -9,9 +9,70 @@ import {
 } from "@material-tailwind/react";
 
 import profilePic from "../../../public/img/ProfilePicture.png";
-import projectLogo from "../../../public/img/logo.png";
 
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
+
+/**
+ *
+ * Sidenav Component
+ *
+ * The Sidenav component is a React component that renders a side navigation bar. It allows users to navigate to different pages of the application.
+ *
+ * Components:
+ * - Avatar: Displays the user's profile picture.
+ * - Typography: Displays text.
+ * - IconButton: A button component with an icon.
+ * - XMarkIcon: An icon component displaying an X mark.
+ * - NavLink: Allows navigation to a page.
+ * - Button: A button component for navigation.
+ *
+ * Props:
+ * - brandImg (string, default: "/img/logo-ct.png"): URL of the brand image.
+ * - brandName (string, default: "Call Analysis"): Name of the brand.
+ * - routes (array): An array of route objects, each containing:
+ *   - layout (string): Layout of the page.
+ *   - title (string): Title of the page.
+ *   - pages (array of objects): Pages with properties:
+ *     - icon: Icon component representing the page.
+ *     - name: Name of the page.
+ *     - path: Path of the page.
+ *
+ * Usage Example:
+ * ```jsx
+ * import Sidenav from './Sidenav';
+ *
+ * const navigationRoutes = [
+ *   {
+ *     layout: "dashboard",
+ *     title: "Dashboard",
+ *     pages: [
+ *       {
+ *         icon: <DashboardIcon />,
+ *         name: "Dashboard Home",
+ *         path: "/home",
+ *       },
+ *       // Add more pages as needed
+ *     ],
+ *   },
+ *   // Add more routes as needed
+ * ];
+ *
+ * // Inside a React component's render method:
+ * <Sidenav brandImg="/img/logo.png" brandName="My App" routes={navigationRoutes} />
+ * ```
+ *
+ * Dependencies:
+ * - This component relies on the following libraries:
+ *   - react
+ *   - @mui/material
+ *   - @mui/icons-material
+ *   - prop-types
+ *
+ * Notes:
+ * - The Sidenav component uses components from the @mui/material library for rendering.
+ * - It manages the state of the navigation bar using the useMaterialTailwindController hook.
+ *
+ **/
 
 export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();

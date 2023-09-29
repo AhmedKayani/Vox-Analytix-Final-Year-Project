@@ -1,48 +1,31 @@
 import React from "react";
-import {
-  Typography,
-  Card,
-  CardHeader,
-  CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Progress,
-} from "@material-tailwind/react";
-import {
-  ClockIcon,
-  CheckIcon,
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
+import { Typography } from "@material-tailwind/react";
 
 // This import is used for stats cards like the one that says "Total Calls Analyzed", "Most Common Emotion" etc.
 import { StatisticsCard } from "@/widgets/cards";
 
-// This import is used for the charts
+// This import is used for the sample data for the statistics card.
+import { statisticsCardsData } from "@/data";
+
+// This import is used for the charts.
 import { DataTable, DoughnutChart, LineChart } from "@/widgets/charts";
 
-// Chart Config imports
-import { doughnutChartConfig } from "@/configs/chartjs-config";
-
-// Chart Data imports
-import { doughnutChartData } from "@/data/doughnut-charts-data";
-
-import {
-  statisticsCardsData,
-  statisticsChartsData,
-  projectsTableData,
-  ordersOverviewData,
-} from "@/data";
+/**
+ *
+ * The above code is a React component called "Home". It renders a layout with multiple sections.
+ *
+ * The first section contains the statistics cards. Shows the total calls analyzed most common emotion, etc.
+ *
+ * The second section contains the charts. The doughnut and line graph chart will be rendered from here.
+ *
+ * The third section contains the table of latest analysis results.
+ *
+ **/
 
 export function Home() {
   return (
     <div className="mt-12">
-      {/* This div contains the cards that I will be using to display the general information */}
+      {/* This div contains the cards that will be using to display the overall analysis stats. */}
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard

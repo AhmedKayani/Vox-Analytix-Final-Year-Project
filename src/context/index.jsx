@@ -1,6 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ *
+ * index.jsx
+ *
+ * The index.jsx file exports the following components and functions:
+ *
+ * - MaterialTailwind: A context object created using React.createContext to manage the state of Material Tailwind UI components.
+ * - reducer: A function that handles state updates based on action types and values.
+ * - MaterialTailwindControllerProvider: A component providing the Material Tailwind context to its children, using useReducer for state management.
+ * - useMaterialTailwindController: A hook to access the Material Tailwind context. Throws an error if used outside MaterialTailwindControllerProvider.
+ * - setOpenSidenav: A function to dispatch an action to open the sidenav.
+ * - setSidenavType: A function to dispatch an action to set the sidenav type.
+ * - setSidenavColor: A function to dispatch an action to set the sidenav color.
+ * - setTransparentNavbar: A function to dispatch an action to set the transparency of the navbar.
+ * - setFixedNavbar: A function to dispatch an action to set the fixed position of the navbar.
+ * - setOpenConfigurator: A function to dispatch an action to open the configurator.
+ *
+ * Dependencies:
+ * - This file depends on the following libraries:
+ *   - react
+ *   - prop-types (Specify how prop-types are used within this file.)
+ *
+ * Notes:
+ * - MaterialTailwindControllerProvider uses useReducer to manage the state of Material Tailwind UI components.
+ * - useMaterialTailwindController is used to access the Material Tailwind context.
+ * - The provided functions like setOpenSidenav are used to dispatch actions for updating UI state.
+ *   Example usage: setOpenSidenav(dispatch, true) to open the sidenav.
+ *
+ **/
+
 export const MaterialTailwind = React.createContext(null);
 MaterialTailwind.displayName = "MaterialTailwindContext";
 

@@ -26,6 +26,16 @@ import {
   setOpenSidenav,
 } from "@/context";
 
+/**
+ *
+ * This code defines a React functional component called DashboardNavbar. It imports and uses several components from the Material Tailwind library, such as Navbar, Breadcrumbs, Input, IconButton, Link, Button, Avatar, Typography, Menu, MenuList, and MenuItem.
+ *
+ * The component uses several hooks, such as useMaterialTailwindController to manage the state of the navbar and sidenav, useLocation to get the current URL path, and useState to manage the state of the layout and page variables.
+ *
+ * The component renders a navbar with a logo, a search input, a menu button, a sign-in button, a settings button, and a notifications menu. The navbar is responsive and adapts to different screen sizes. The DashboardNavbar component has a displayName property that specifies the file path of the component.
+ *
+ **/
+
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;

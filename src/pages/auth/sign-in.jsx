@@ -13,6 +13,37 @@ import {
   Option,
 } from "@material-tailwind/react";
 
+/**
+ * Sign-In Component
+ *
+ * The SignIn component renders a sign-in form, including:
+ * - Background image (img)
+ * - Sign-in form (Card) with:
+ *   - Header (CardHeader)
+ *   - Body (CardBody) with form elements:
+ *     - Email and password input (Input)
+ *     - Role selection (Select) with options (Option)
+ *     - "Remember Me" checkbox (Checkbox)
+ *   - Footer (CardFooter) with:
+ *     - Submit button (Button)
+ *     - Text (Typography)
+ *     - Navigation link (Link) to the sign-up page
+ *
+ * Props:
+ * - This component does not accept any props.
+ *
+ * Dependencies:
+ * - react
+ * - @mui/material
+ * - @mui/icons-material
+ * - react-router-dom
+ *
+ * Notes:
+ * - The SignIn component uses the Card component from the @mui/material library to display the sign-in form.
+ * - It utilizes various components from @mui/material for form elements and styling.
+ * - An image component is used to display a background image.
+ */
+
 export function SignIn() {
   return (
     <>

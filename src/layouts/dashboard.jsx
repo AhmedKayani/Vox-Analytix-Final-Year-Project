@@ -10,6 +10,31 @@ import {
 import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 
+/**
+ *
+ * The Dashboard component is a layout component that renders a dashboard page. It includes the following components:
+ * Sidenav: A navigation menu component that displays a list of routes.
+ * DashboardNavbar: A top navigation bar component that displays the name of the page.
+ * Configurator: A component that allows the user to configure settings.
+ * IconButton: A button component that displays a cog icon and opens the Configurator component when clicked.
+ * Routes: A component that maps the pages array to Route components.
+ * Footer: A component that displays a footer at the bottom of the page.
+ *
+ * Props
+ * The Dashboard component does not accept any props.
+ *
+ * Dependencies
+ * The Dashboard component depends on the following libraries:
+ * react
+ * react-router-dom
+ * @material-tailwind/react
+ *
+ * Notes
+ * The Dashboard component uses the useMaterialTailwindController hook to manage the state of the Sidenav component.
+ * The Dashboard component uses the routes array to generate the navigation menu and the pages array to generate the Route components.
+ *
+ **/
+
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;

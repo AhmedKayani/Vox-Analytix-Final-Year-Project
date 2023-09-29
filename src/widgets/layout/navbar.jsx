@@ -10,6 +10,16 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
+/**
+ *
+ * This code defines a React functional component called Navbar. It takes three props: brandName, routes, and action. The component uses several components from the Material Tailwind library, such as MTNavbar, Typography, Link, IconButton, XMarkIcon, Bars3Icon, MobileNav, and Button.
+ * 
+ * The component uses the useState hook to manage the state of the openNav variable, which controls the visibility of the mobile navigation menu. The component also uses the useEffect hook to add a resize event listener that closes the mobile navigation menu when the window width is greater than or equal to 960 pixels.
+ * 
+ * The component renders a navbar with a logo, a list of navigation links, and an action button. The navbar is responsive and adapts to different screen sizes. The Navbar component has propTypes and defaultProps properties that specify the expected types and default values of the props. The Navbar component also has a displayName property that specifies the file path of the component. 
+ * 
+ **/
+
 export function Navbar({ brandName, routes, action }) {
   const [openNav, setOpenNav] = React.useState(false);
 
