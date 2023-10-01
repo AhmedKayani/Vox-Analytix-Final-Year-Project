@@ -37,7 +37,12 @@ export function DropzoneUpload({ className }) {
   const handleAnalyzeClick = () => {
     // Perform your analyze function here
     // Once done, navigate to the Results page
-    navigate("/dashboard/result-page");
+    if (file.length > 0) {
+      navigate("/dashboard/result-page", { state: { file } });
+    } else {
+      setAlert(false);
+      setRejectedFile("Please upload a file");
+    }
   };
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {

@@ -1,5 +1,8 @@
 import React from "react";
 
+// Imported to get file from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
+import { useLocation } from "react-router-dom";
+
 import {
   Progress,
   AudioPlayer,
@@ -10,14 +13,14 @@ import {
 
 /**
  *
- * The Result component renders a layout with an audio player, a transcription box,
- * emotions detected, and a result form.
+ * The Result component renders a layout with an audio player, a transcription box, emotions detected, and a result form.
  *
- * @returns a JSX element, which represents the structure and content of the HTML to
- * be rendered on the page.
+ * @returns a JSX element, which represents the structure and content of the HTML to be rendered on the page.
  *
  */
 export function Result() {
+  const location = useLocation();
+  const { file } = location.state;
   return (
     <div className="mt-12">
       {/* Progress is rendered on the page instead of all the other result components while fetching the data */}
@@ -26,7 +29,7 @@ export function Result() {
       {/* When the data is fetched and available, all the following components are rendered on result page. */}
       <div className="flex flex-wrap gap-y-4">
         <div className="order-1 mx-auto w-full sm:w-full">
-          <AudioPlayer />
+          <AudioPlayer file={file} />
         </div>
         <div className="order-3 m-0 w-full p-0 sm:order-2 sm:w-2/3 sm:pr-2">
           <TranscriptionBox />

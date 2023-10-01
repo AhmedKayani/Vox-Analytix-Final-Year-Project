@@ -39,6 +39,8 @@ import routes from "@/routes";
  **/
 
 export function Auth() {
+
+  // This array contains the routes for the navigation bar at the top which is currently diasbled.
   const navbarRoutes = [
     {
       name: "dashboard",
