@@ -27,6 +27,11 @@ export const routes = [
     layout: "dashboard",
     pages: [
       {
+        name: "Dashboard Home",
+        path: "/",
+        element: <Home />,
+      },
+      {
         icon: <HomeIcon {...icon} />,
         name: "Dashboard Home",
         path: "/home",

@@ -23,7 +23,7 @@ export function Progress() {
         Sit Tight
       </Typography>
       <Typography variant="paragraph" color="blue-gray" className="mb-4">
-        Analyzing your call
+        Upload in Progress
       </Typography>
       <CircularProgress className="mb-4" size={100} thickness={2} />
       <Button variant="gradient" ripple={true} type="sm" onClick={handleCancel}>

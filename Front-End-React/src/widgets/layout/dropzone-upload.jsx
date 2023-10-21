@@ -31,7 +31,7 @@ import { GetAudioUrl } from "@/utils";
  *
  **/
 
-export function DropzoneUpload() {
+export function DropzoneUpload(props) {
   const [file, setFile] = useState([]);
   const [rejectedFile, setRejectedFile] = useState();
   const [alert, setAlert] = useState(true);
@@ -44,9 +44,10 @@ export function DropzoneUpload() {
     // Once done, navigate to the Results page
 
     if (file.length > 0) {
-      const url = uploadAudioAndGetUrl(urlFile);
-      console.log(url);
-      navigate("/dashboard/result-page", { state: { file } });
+      // const url = uploadAudioAndGetUrl(urlFile);
+      // console.log(url);
+      // navigate("/dashboard/result-page", { state: { file } });
+      props.handleFileUpload(file);
     } else {
       setAlert(false);
       setRejectedFile("Please upload a file");
