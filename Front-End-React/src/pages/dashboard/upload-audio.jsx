@@ -10,6 +10,8 @@ import { DropzoneUpload, AccordionGuide } from "@/widgets/layout";
  **/
 
 export function UploadAudio() {
+  const [urlFile, setUrlFile] = useState(null);
+
   return (
     <>
       <Card className="mx-auto mt-12 mb-6 h-fit lg:mx-4">

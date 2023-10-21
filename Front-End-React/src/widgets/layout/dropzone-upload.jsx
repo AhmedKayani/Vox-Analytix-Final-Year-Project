@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 
 import AudioFileIcon from "@mui/icons-material/AudioFile";
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,6 +12,10 @@ import {
 import { Typography, Card, Button, Alert } from "@material-tailwind/react";
 
 import { useDropzone } from "react-dropzone";
+
+// import { GetAudioUrl } from "@/utils";
+
+import { GetAudioUrl } from "@/utils";
 
 /**
  *
@@ -27,17 +31,21 @@ import { useDropzone } from "react-dropzone";
  *
  **/
 
-export function DropzoneUpload({ className }) {
+export function DropzoneUpload() {
   const [file, setFile] = useState([]);
   const [rejectedFile, setRejectedFile] = useState();
   const [alert, setAlert] = useState(true);
+  const [urlFile, setUrlFile] = useState(null);
 
   const navigate = useNavigate();
 
   const handleAnalyzeClick = () => {
     // Perform your analyze function here
     // Once done, navigate to the Results page
+
     if (file.length > 0) {
+      const url = uploadAudioAndGetUrl(urlFile);
+      console.log(url);
       navigate("/dashboard/result-page", { state: { file } });
     } else {
       setAlert(false);
@@ -45,22 +53,40 @@ export function DropzoneUpload({ className }) {
     }
   };
 
-  const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
-    // Resetting the state of rejected files to remove the alert if the user uploads a valid file
-    setRejectedFile();
-    if (acceptedFiles.length) {
-      const firstAcceptedFile = acceptedFiles[0];
-      setFile([
-        Object.assign(firstAcceptedFile, {
-          preview: URL.createObjectURL(firstAcceptedFile),
-        }),
-      ]);
-    }
+  const uploadAudioAndGetUrl = async (file) => {
+    return await GetAudioUrl(file);
+  };
 
-    if (rejectedFiles.length) {
-      setRejectedFile(rejectedFiles[0].errors[0].message);
-    }
+  const assignFilePreview = useMemo(() => {
+    return (file) => {
+      return Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+    };
   }, []);
+
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFiles) => {
+      // Resetting the state of rejected files to remove the alert if the user uploads a valid file
+      setRejectedFile();
+      if (acceptedFiles.length) {
+        const firstAcceptedFile = acceptedFiles[0];
+
+        // Updating the state for URL File
+        setUrlFile(firstAcceptedFile);
+
+        setFile([assignFilePreview(firstAcceptedFile)]);
+      }
+
+      if (rejectedFiles.length) {
+        setRejectedFile(rejectedFiles[0].errors[0].message);
+      }
+    },
+    [assignFilePreview]
+  );
+
+  console.dir(`This is the file: ${file}`);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
