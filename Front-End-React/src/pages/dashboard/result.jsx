@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 // Imported to get file from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
 import { useLocation } from "react-router-dom";
@@ -21,6 +22,7 @@ import {
 export function Result() {
   const location = useLocation();
   const { file } = location.state;
+
   return (
     <div className="mt-12">
       {/* Progress is rendered on the page instead of all the other result components while fetching the data */}

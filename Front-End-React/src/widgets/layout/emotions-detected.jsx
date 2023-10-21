@@ -17,6 +17,7 @@ export function EmotionsDetected() {
     <div className="flex flex-col flex-wrap gap-y-8">
       {emotionDetectedData.map((data) => (
         <StatisticsCard
+          key={data.time}
           color={data.color}
           icon={React.createElement(data.icon, {
             className: "w-8 h-8 text-white",

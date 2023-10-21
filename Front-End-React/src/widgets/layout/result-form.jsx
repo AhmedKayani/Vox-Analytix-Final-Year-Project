@@ -16,7 +16,7 @@ export function ResultForm() {
     <Card className="flex flex-1 gap-y-4 px-12 py-12">
       <Input className="h-fit" label="Agent Name" size="lg" color="blue" />
       <Textarea label="Reason for Flagged Call" size="lg" color="blue" />
-      <Button color="blue" ripple="light" className="w-24 self-end">
+      <Button color="blue" ripple={true} className="w-24 self-end">
         Save
       </Button>
     </Card>
