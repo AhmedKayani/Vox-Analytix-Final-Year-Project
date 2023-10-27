@@ -23,7 +23,7 @@ export function UploadAudio() {
     console.log(url);
 
     setIsUploading(false);
-    navigate("/dashboard/result-page", { state: { file } });
+    navigate("/dashboard/result-page", { state: { file, url } });
   };
 
   const uploadAudioAndGetUrl = async (file) => {

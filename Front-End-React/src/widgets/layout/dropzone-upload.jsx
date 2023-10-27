@@ -1,9 +1,8 @@
 import React, { useCallback, useState, useMemo } from "react";
 
+// Icons
 import AudioFileIcon from "@mui/icons-material/AudioFile";
 import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router-dom";
-
 import {
   CloudArrowUpIcon,
   InformationCircleIcon,
@@ -12,10 +11,6 @@ import {
 import { Typography, Card, Button, Alert } from "@material-tailwind/react";
 
 import { useDropzone } from "react-dropzone";
-
-// import { GetAudioUrl } from "@/utils";
-
-import { GetAudioUrl } from "@/utils";
 
 /**
  *
@@ -35,27 +30,17 @@ export function DropzoneUpload(props) {
   const [file, setFile] = useState([]);
   const [rejectedFile, setRejectedFile] = useState();
   const [alert, setAlert] = useState(true);
-  const [urlFile, setUrlFile] = useState(null);
-
-  const navigate = useNavigate();
 
   const handleAnalyzeClick = () => {
     // Perform your analyze function here
     // Once done, navigate to the Results page
 
     if (file.length > 0) {
-      // const url = uploadAudioAndGetUrl(urlFile);
-      // console.log(url);
-      // navigate("/dashboard/result-page", { state: { file } });
       props.handleFileUpload(file);
     } else {
       setAlert(false);
       setRejectedFile("Please upload a file");
     }
-  };
-
-  const uploadAudioAndGetUrl = async (file) => {
-    return await GetAudioUrl(file);
   };
 
   const assignFilePreview = useMemo(() => {
@@ -72,10 +57,6 @@ export function DropzoneUpload(props) {
       setRejectedFile();
       if (acceptedFiles.length) {
         const firstAcceptedFile = acceptedFiles[0];
-
-        // Updating the state for URL File
-        setUrlFile(firstAcceptedFile);
-
         setFile([assignFilePreview(firstAcceptedFile)]);
       }
 
@@ -85,8 +66,6 @@ export function DropzoneUpload(props) {
     },
     [assignFilePreview]
   );
-
-  console.dir(`This is the file: ${file}`);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

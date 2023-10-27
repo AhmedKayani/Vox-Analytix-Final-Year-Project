@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GetAudioUrl = async (file) => {
+export const GetAudioUrl = async (file) => {
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset", "Fiverr");

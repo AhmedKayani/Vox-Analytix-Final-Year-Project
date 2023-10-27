@@ -1,6 +1,6 @@
 import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Typography, Card, Button, Alert } from "@material-tailwind/react";
+import { Typography, Button } from "@material-tailwind/react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,6 @@ export function Progress() {
   const navigate = useNavigate();
 
   const handleCancel = () => {
-    // Perform your analyze function here
-    // Once done, navigate to the Results page
     navigate("/dashboard/upload-audio");
   };
 
