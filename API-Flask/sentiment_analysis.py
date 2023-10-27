@@ -7,8 +7,14 @@ import json
 app = Flask(__name__)
 
 # Configure your Hume API Key here
+# Sami's API Key
 # HUME_API_KEY = "OXbX3R5a5LREAmMyhtzzGHalqQsjMNBRyYylykJDRBClmPqL"
-HUME_API_KEY = "Mzj1N5sW4Ss8RKll2q9WaGgWJ7K5rwbVUzIMRpo2Qm9ILn8E"
+
+# Faizan's API Key
+# HUME_API_KEY = "Mzj1N5sW4Ss8RKll2q9WaGgWJ7K5rwbVUzIMRpo2Qm9ILn8E"
+
+# My API Key
+HUME_API_KEY = "1sGimf7Z76yJaOyQ8i9Fk6gIFp2Y6GQnkkO7ok81WFzQNKcf"
 
 def process_mp3(file_path):
     try:
