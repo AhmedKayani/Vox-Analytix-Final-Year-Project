@@ -1,5 +1,6 @@
 import {
   Card,
+  Chip,
   CardHeader,
   CardBody,
   CardFooter,
@@ -7,7 +8,16 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 
-export function StatisticsCard({ color, icon, title, value, footer, time }) {
+export function StatisticsCard({
+  color,
+  icon,
+  title,
+  value,
+  footer,
+  time,
+  topFiveEmotions,
+  handleEmotionClick,
+}) {
   return (
     <Card>
       <CardHeader
@@ -37,7 +47,25 @@ export function StatisticsCard({ color, icon, title, value, footer, time }) {
       </CardBody>
       {footer && (
         <CardFooter className="border-t border-blue-gray-50 p-4">
-          {footer}
+          {/* {footer} */}
+          <ul className="flex list-none flex-wrap gap-2">
+            {topFiveEmotions?.map((data, index) => (
+              <li
+                onClick={() => handleEmotionClick(data?.text, data?.timeBegin)}
+                key={index}
+                className="flex items-center"
+              >
+                <Chip
+                  key={index}
+                  color="red"
+                  variant="gradient"
+                  size="lg"
+                  value={`${data?.timeBegin?.minutes}:${data?.timeBegin?.seconds}`}
+                  className="rounded-full"
+                />
+              </li>
+            ))}
+          </ul>
         </CardFooter>
       )}
     </Card>

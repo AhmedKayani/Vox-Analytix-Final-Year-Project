@@ -15,8 +15,6 @@ import { FaceFrownIcon } from "@heroicons/react/24/solid";
  **/
 
 export function EmotionsDetected({ analysisData, handleEmotionClick }) {
-  console.log(`Is analysisData an array? ${Array.isArray(analysisData)}`);
-
   function convertSecondsToMinutesAndSeconds(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -34,26 +32,39 @@ export function EmotionsDetected({ analysisData, handleEmotionClick }) {
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
 
-  console.log(topScores);
-
   return (
     <div className="flex flex-col flex-wrap gap-y-8">
       <ul>
-        {Array.isArray(analysisData) &&
-          topScores?.map((data, index) => (
-            <li onClick={() => handleEmotionClick(data?.text)} key={index}>
-              <StatisticsCard
-                color="red"
-                // icon={FaceFrownIcon}
-                // title={`Time Range: ${data.time.begin} - ${data.time.end}`}
-                // title={"Emotion Detected"}
-                // value={`${data.emotions[0].name}, Score: ${data.emotions[0].score}`}
-                value={`${data?.name}, Score: ${data?.score}`}
-                time={`${data?.timeBegin?.minutes} minutes and ${data?.timeBegin?.seconds} seconds`}
-                // time={`${minutes} minutes and ${seconds} seconds`}
-              />
-            </li>
-          ))}
+        {Array.isArray(analysisData) && (
+          // topScores?.map((data, index) => (
+          //   <li onClick={() => handleEmotionClick(data?.text)} key={index}>
+          //     <StatisticsCard
+          //       color="red"
+          //       // icon={FaceFrownIcon}
+          //       // title={`Time Range: ${data.time.begin} - ${data.time.end}`}
+          //       // title={"Emotion Detected"}
+          //       // value={`${data.emotions[0].name}, Score: ${data.emotions[0].score}`}
+          //       value={`${data?.name}, Score: ${data?.score}`}
+          //       time={`${data?.timeBegin?.minutes} minutes and ${data?.timeBegin?.seconds} seconds`}
+          //       // time={`${minutes} minutes and ${seconds} seconds`}
+          //     />
+          //   </li>
+          // ))}
+          // Anger Emotion Stat Card with Chips
+          <li>
+            <StatisticsCard
+              color="red"
+              // icon={FaceFrownIcon}
+              // title={`Time Range: ${data.time.begin} - ${data.time.end}`}
+              title={"Emotion Detected"}
+              value={`Anger`}
+              topFiveEmotions={topScores}
+              footer={1}
+              handleEmotionClick={handleEmotionClick}
+              // time={`${minutes} minutes and ${seconds} seconds`}
+            />
+          </li>
+        )}
       </ul>
       {/* {emotionDetectedData.map((data) => (
         <StatisticsCard

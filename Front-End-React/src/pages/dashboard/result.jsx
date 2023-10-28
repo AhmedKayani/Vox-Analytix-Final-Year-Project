@@ -25,6 +25,7 @@ import {
 export function Result() {
   const [analysisData, setAnalysisData] = useState([]);
   const [selectedText, setSelectedText] = useState(null);
+  const [startSeekTimeSec, setStartSeekTimeSec] = useState(0);
   const location = useLocation();
   const { file, url } = location.state;
 
@@ -40,13 +41,14 @@ export function Result() {
       }),
   });
 
-  const handleEmotionClick = (text) => {
-    console.log(text);
+  const handleEmotionClick = (text, time) => {
+    const timeInSeconds = time.minutes * 60 + time.seconds;
+    setStartSeekTimeSec(timeInSeconds);
     setSelectedText(text);
   };
 
-  console.log(error);
-  console.log(isLoading);
+  // console.log(error);
+  // console.log(isLoading);
   console.log("This is the analysis data:", analysisData);
 
   return (
@@ -57,7 +59,7 @@ export function Result() {
       {/* When the data is fetched and available, all the following components are rendered on result page. */}
       <div className="flex flex-wrap gap-y-4">
         <div className="mx-auto w-full sm:w-full">
-          <AudioPlayer file={file} />
+          <AudioPlayer file={file} startSeekTimeSec={startSeekTimeSec} />
         </div>
         {isLoading && <Progress />}
         {!isLoading && (
