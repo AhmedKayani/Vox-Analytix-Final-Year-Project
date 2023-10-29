@@ -60,7 +60,9 @@ export function StatisticsCard({
                   color={color}
                   variant="gradient"
                   size="lg"
-                  value={`${data?.timeBegin?.minutes}:${data?.timeBegin?.seconds}`}
+                  value={`${data?.timeBegin?.minutes}:${
+                    data?.timeBegin?.seconds.toString().length === 1 ? "0" : ""
+                  }${data?.timeBegin?.seconds}`}
                   className="rounded-full"
                 />
               </li>

@@ -68,30 +68,35 @@ export function Result() {
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
                 emotionType={"Anger"}
+                emotionIndex={0}
                 color={"red"}
               />
               <EmotionsDetected
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
                 emotionType={"Distress"}
+                emotionIndex={3}
                 color={"orange"}
               />
               <EmotionsDetected
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
                 emotionType={"Disappointment"}
+                emotionIndex={1}
                 color={"blue"}
               />
               <EmotionsDetected
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
                 emotionType={"Disgust"}
+                emotionIndex={2}
                 color={"blue-gray"}
               />
               <EmotionsDetected
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
                 emotionType={"Surprise"}
+                emotionIndex={4}
                 color={"lime"}
               />
             </div>
