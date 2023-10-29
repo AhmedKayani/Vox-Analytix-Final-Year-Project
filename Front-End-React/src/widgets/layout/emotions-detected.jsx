@@ -14,7 +14,12 @@ import { FaceFrownIcon } from "@heroicons/react/24/solid";
  *
  **/
 
-export function EmotionsDetected({ analysisData, handleEmotionClick }) {
+export function EmotionsDetected({
+  analysisData,
+  handleEmotionClick,
+  emotionType,
+  color,
+}) {
   function convertSecondsToMinutesAndSeconds(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -53,11 +58,11 @@ export function EmotionsDetected({ analysisData, handleEmotionClick }) {
           // Anger Emotion Stat Card with Chips
           <li>
             <StatisticsCard
-              color="red"
+              color={color}
               // icon={FaceFrownIcon}
               // title={`Time Range: ${data.time.begin} - ${data.time.end}`}
               title={"Emotion Detected"}
-              value={`Anger`}
+              value={emotionType}
               topFiveEmotions={topScores}
               footer={1}
               handleEmotionClick={handleEmotionClick}

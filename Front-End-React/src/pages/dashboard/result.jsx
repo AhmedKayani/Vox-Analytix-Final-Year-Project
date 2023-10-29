@@ -53,24 +53,46 @@ export function Result() {
 
   return (
     <div className="mt-12">
-      {/* Progress is rendered on the page instead of all the other result components while fetching the data */}
-      {/* <Progress /> */}
-
-      {/* When the data is fetched and available, all the following components are rendered on result page. */}
-      <div className="flex flex-wrap gap-y-4">
+      <div className="flex flex-col flex-wrap gap-y-12">
         <div className="mx-auto w-full sm:w-full">
           <AudioPlayer file={file} startSeekTimeSec={startSeekTimeSec} />
         </div>
         {isLoading && <Progress />}
         {!isLoading && (
           <>
-            <div className="order-3 m-0 w-full p-0 sm:order-2 sm:w-2/3 sm:pr-2">
+            <div className="order-2 m-0 w-full p-0">
               <TranscriptionBox selectedText={selectedText} />
             </div>
-            <div className="relative order-2 m-0 w-full pt-4 sm:order-3 sm:w-1/3 sm:pl-2">
+            <div className="order-3 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
               <EmotionsDetected
                 handleEmotionClick={handleEmotionClick}
                 analysisData={analysisData}
+                emotionType={"Anger"}
+                color={"red"}
+              />
+              <EmotionsDetected
+                handleEmotionClick={handleEmotionClick}
+                analysisData={analysisData}
+                emotionType={"Distress"}
+                color={"orange"}
+              />
+              <EmotionsDetected
+                handleEmotionClick={handleEmotionClick}
+                analysisData={analysisData}
+                emotionType={"Disappointment"}
+                color={"blue"}
+              />
+              <EmotionsDetected
+                handleEmotionClick={handleEmotionClick}
+                analysisData={analysisData}
+                emotionType={"Disgust"}
+                color={"blue-gray"}
+              />
+              <EmotionsDetected
+                handleEmotionClick={handleEmotionClick}
+                analysisData={analysisData}
+                emotionType={"Surprise"}
+                color={"lime"}
               />
             </div>
             <div className="order-4 w-full p-0 sm:w-2/3 sm:pr-2">

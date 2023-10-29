@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Card, Typography } from "@material-tailwind/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+} from "@material-tailwind/react";
 import ReactAudioPlayer from "react-audio-player";
 
 export function AudioPlayer(props) {
@@ -11,17 +16,21 @@ export function AudioPlayer(props) {
   }
 
   return (
-    <Card className="px-12 py-12">
-      <Typography variant="h5" className="mx-auto mb-2 h-fit">
-        {props.file[0].path}
-      </Typography>
-      <ReactAudioPlayer
-        src={props.file[0].preview}
-        controls
-        className="w-full"
-        ref={(element) => setAudioPlayer(element)}
-        onSeeked={() => console.log("Seeked event triggered")}
-      />
+    <Card>
+      <CardHeader variant="gradient" color="blue" className="p-5">
+        <Typography variant="h6" color="white">
+          Audio Player ({props.file[0].path})
+        </Typography>
+      </CardHeader>
+      <CardBody className="px-12 pb-12 pt-8">
+        <ReactAudioPlayer
+          src={props.file[0].preview}
+          controls
+          className="w-full"
+          ref={(element) => setAudioPlayer(element)}
+          onSeeked={() => console.log("Seeked event triggered")}
+        />
+      </CardBody>
     </Card>
   );
 }

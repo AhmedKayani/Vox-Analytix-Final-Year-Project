@@ -57,7 +57,7 @@ export function StatisticsCard({
               >
                 <Chip
                   key={index}
-                  color="red"
+                  color={color}
                   variant="gradient"
                   size="lg"
                   value={`${data?.timeBegin?.minutes}:${data?.timeBegin?.seconds}`}

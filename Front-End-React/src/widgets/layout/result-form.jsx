@@ -1,4 +1,12 @@
-import { Card, Button, Input, Textarea } from "@material-tailwind/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Button,
+  Input,
+  Textarea,
+} from "@material-tailwind/react";
 
 /**
  * 
@@ -13,12 +21,19 @@ import { Card, Button, Input, Textarea } from "@material-tailwind/react";
 
 export function ResultForm() {
   return (
-    <Card className="flex flex-1 gap-y-4 px-12 py-12">
-      <Input className="h-fit" label="Agent Name" size="lg" color="blue" />
-      <Textarea label="Reason for Flagged Call" size="lg" color="blue" />
-      <Button color="blue" ripple={true} className="w-24 self-end">
-        Save
-      </Button>
+    <Card>
+      <CardHeader variant="gradient" color="blue" className="p-5">
+        <Typography variant="h6" color="white">
+          Form
+        </Typography>
+      </CardHeader>
+      <CardBody className="flex flex-1 flex-col gap-y-4">
+        <Input className="h-fit" label="Agent Name" size="lg" color="blue" />
+        <Textarea label="Reason for Flagged Call" size="lg" color="blue" />
+        <Button color="blue" ripple={true} className="w-24 self-end">
+          Save
+        </Button>
+      </CardBody>
     </Card>
   );
 }
