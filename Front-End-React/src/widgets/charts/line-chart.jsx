@@ -49,9 +49,9 @@ export function LineChart() {
   };
 
   return (
-    <Card className="w-full rounded-lg bg-white p-5 shadow-md xl:col-span-2">
-      <CardHeader floated={false} shadow={false} variant="gradient">
-        <Typography color="black" className="text-lg">
+    <Card className="w-full rounded-lg bg-white shadow-md xl:col-span-2">
+      <CardHeader className="p-5" variant="gradient" color="blue">
+        <Typography variant="h6" color="white">
           Call Analysis Trend
         </Typography>
       </CardHeader>
@@ -60,6 +60,9 @@ export function LineChart() {
           <Line data={data} options={options} />
         </div>
       </CardBody>
+      <CardFooter className="pt-0">
+        <Typography variant="p">Updated 2 minutes ago</Typography>
+      </CardFooter>
     </Card>
   );
 }

@@ -44,11 +44,18 @@ const options = {
 
 export function DoughnutChart() {
   return (
-    <Card className="p-5">
-      <Typography className="flex items-center font-normal text-blue-gray-600">
-        Emotion
-      </Typography>
-      <Doughnut data={data} options={options} />
+    <Card>
+      <CardHeader className="p-5" variant="gradient" color="blue">
+        <Typography variant="h6" color="white">
+          Negative Emotions
+        </Typography>
+      </CardHeader>
+      <CardBody>
+        <Doughnut data={data} options={options} />
+      </CardBody>
+      <CardFooter className="pt-0">
+        <Typography variant="p">Updated 2 minutes ago</Typography>
+      </CardFooter>
     </Card>
   );
 }

@@ -45,7 +45,7 @@ export function Home() {
         ))}
       </div>
       {/* This div contains the charts. The doughnut and line graph chart will be rendered from here */}
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mb-12 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {/* This is the doughnut chart */}
         <DoughnutChart />
 
