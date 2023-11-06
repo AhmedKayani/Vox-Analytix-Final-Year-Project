@@ -22,6 +22,7 @@ export function CallHistory() {
     <div className="mt-12">
       {/* This div contains the statistics cards which display overall stats like total calls analyzed, average call duration and export history option. */}
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+        {/* Displaying sample data like "Total Calls Analyzed", "Average Call Duration" etc from the callHistoryStatisticsCardData.js file. */}
         {callHistoryStatisticsCardData.map(
           ({ icon, title, footer, ...rest }) => (
             <StatisticsCard
