@@ -25,7 +25,7 @@ export function StatisticsCard({
         color={color}
         className="absolute -mt-4 grid h-16 w-16 place-items-center"
       >
-        {icon}
+        {icon && icon}
       </CardHeader>
       <CardBody className="p-4 text-right">
         <Typography variant="small" className="font-normal text-blue-gray-600">

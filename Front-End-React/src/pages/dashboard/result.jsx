@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+// Importing icons from font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFaceAngry, // For Anger
+  faFaceMeh, // For Disgust
+  faFaceFrown, // For Disappointment
+  faFaceSadTear, // For Distress
+  faFaceSurprise, // For Surprise
+} from "@fortawesome/free-solid-svg-icons";
+
 // Imported to get file from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
 import { useLocation } from "react-router-dom";
 
@@ -44,6 +54,19 @@ export function Result() {
       }),
   });
 
+  // This part is for the icons JSX elements. The icons are imported from font awesome.
+  const angerIcon = <FontAwesomeIcon className="fa-2x" icon={faFaceAngry} />;
+  const disgustIcon = <FontAwesomeIcon className="fa-2x" icon={faFaceMeh} />;
+  const disappointmentIcon = (
+    <FontAwesomeIcon className="fa-2x" icon={faFaceFrown} />
+  );
+  const distressIcon = (
+    <FontAwesomeIcon className="fa-2x" icon={faFaceSadTear} />
+  );
+  const surpriseIcon = (
+    <FontAwesomeIcon className="fa-2x" icon={faFaceSurprise} />
+  );
+
   // This function is used to handle the emotion click. It sets the start seek time and the selected text. Helps in jumping to the time when the emotion appeared. Also displays the selected text in the transcription box.
   const handleEmotionClick = (text, time) => {
     const timeInSeconds = time.minutes * 60 + time.seconds;
@@ -84,6 +107,7 @@ export function Result() {
                 emotionType={"Anger"}
                 emotionIndex={0}
                 color={"red"}
+                icon={angerIcon}
               />
 
               {/* This is the Distress Card. The handleEmotionClick function is used to get the required time to jump in audio file. */}
@@ -93,6 +117,7 @@ export function Result() {
                 emotionType={"Distress"}
                 emotionIndex={3}
                 color={"orange"}
+                icon={distressIcon}
               />
 
               {/* This is the Disappointment Card. The handleEmotionClick function is used to get the required time to jump in audio file. */}
@@ -102,6 +127,7 @@ export function Result() {
                 emotionType={"Disappointment"}
                 emotionIndex={1}
                 color={"blue"}
+                icon={disappointmentIcon}
               />
 
               {/* This is the Disgust Card. The handleEmotionClick function is used to get the required time to jump in audio file. */}
@@ -111,6 +137,7 @@ export function Result() {
                 emotionType={"Disgust"}
                 emotionIndex={2}
                 color={"blue-gray"}
+                icon={disgustIcon}
               />
 
               {/* This is the Surprise Card. The handleEmotionClick function is used to get the required time to jump in audio file. */}
@@ -120,6 +147,7 @@ export function Result() {
                 emotionType={"Surprise"}
                 emotionIndex={4}
                 color={"lime"}
+                icon={surpriseIcon}
               />
             </div>
             <div className="order-4 w-full p-0 sm:w-2/3 sm:pr-2">

@@ -17,6 +17,7 @@ export function EmotionsDetected({
   emotionType,
   emotionIndex,
   color,
+  icon,
 }) {
   function convertSecondsToMinutesAndSeconds(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -48,6 +49,7 @@ export function EmotionsDetected({
               topFiveEmotions={topScores}
               footer={1}
               handleEmotionClick={handleEmotionClick}
+              icon={icon}
             />
           </li>
         )}
