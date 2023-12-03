@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import { ApiClient } from "@/utils";
+import { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -5,8 +8,10 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+// The table head.
 const TABLE_HEAD = ["Duration", "Date", "Agent", "Reason", ""];
 
+// Dummy values for the table rows.
 const TABLE_ROWS = [
   {
     Duration: "3 min",
@@ -41,6 +46,27 @@ const TABLE_ROWS = [
 ];
 
 export function DataTable() {
+  // These states contains the past analysis data.
+  const [analysis, setAnalysis] = useState([]);
+
+  // This is used to get the analysis data from the backend database.
+  // The following has to be done!
+  // Save the name of the agent, the duration of the call, the date of the call, and the reason for the rejection in the database.
+  const { isLoading, error } = useQuery({
+    queryKey: ["analysis"],
+    queryFn: () =>
+      ApiClient.get("/analysis", {
+        // ID of the user who is logged in. Currently a dummy value.
+        owner: 1,
+      }).then((res) => {
+        setAnalysis(res?.data);
+        return res.data;
+      }),
+  });
+
+  // console.log(analysis);
+
+  // Currently using dummy values for the table rows.
   return (
     <Card>
       <CardHeader className="p-5" variant="gradient" color="blue">

@@ -61,7 +61,7 @@ export function LineChart() {
         </div>
       </CardBody>
       <CardFooter className="pt-0">
-        <Typography variant="p">Updated 2 minutes ago</Typography>
+        <Typography variant="paragraph">Updated 2 minutes ago</Typography>
       </CardFooter>
     </Card>
   );

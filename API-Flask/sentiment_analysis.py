@@ -14,7 +14,10 @@ app = Flask(__name__)
 # HUME_API_KEY = "Mzj1N5sW4Ss8RKll2q9WaGgWJ7K5rwbVUzIMRpo2Qm9ILn8E"
 
 # My API Key
-HUME_API_KEY = "1sGimf7Z76yJaOyQ8i9Fk6gIFp2Y6GQnkkO7ok81WFzQNKcf"
+# HUME_API_KEY = "1sGimf7Z76yJaOyQ8i9Fk6gIFp2Y6GQnkkO7ok81WFzQNKcf"
+
+# My API Key 2
+HUME_API_KEY = "pzzjXShj4CFRCd2mzFjoAM2Mdq5cGyYuRyGGHR3CJE4tSBsr"
 
 def process_mp3(file_path):
     try:

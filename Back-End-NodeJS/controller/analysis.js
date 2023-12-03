@@ -1,5 +1,7 @@
-const Analysis = require("../model/analysis");
 const axios = require("axios");
+
+// Importing the Analysis model
+const Analysis = require("../model/analysis");
 
 const createAnalysis = async (req, res) => {
   try {
@@ -82,9 +84,15 @@ const deleteAnalysis = async (req, res) => {
     res.send(e);
   }
 };
+
+// For getting the data from the database
 const getAnalysis = async (req, res) => {
   try {
-    const analysis = await Analysis.find({ owner: req.userId });
+    // Return only the analysis that belongs to the user
+    // const analysis = await Analysis.find({ owner: req.userId });
+
+    // As the owner is not implemented yet, we are returning all the analysis
+    const analysis = await Analysis.find({});
     res.send(analysis);
   } catch (e) {
     res.send(e);
