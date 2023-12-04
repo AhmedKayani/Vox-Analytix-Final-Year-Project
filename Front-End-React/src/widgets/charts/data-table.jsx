@@ -50,12 +50,10 @@ export function DataTable() {
   const [analysis, setAnalysis] = useState([]);
 
   // This is used to get the analysis data from the backend database.
-  // The following has to be done!
-  // Save the name of the agent, the duration of the call, the date of the call, and the reason for the rejection in the database.
   const { isLoading, error } = useQuery({
     queryKey: ["analysis"],
     queryFn: () =>
-      ApiClient.get("/analysis", {
+      ApiClient.get("/dataAnalysis", {
         // ID of the user who is logged in. Currently a dummy value.
         owner: 1,
       }).then((res) => {
@@ -64,7 +62,7 @@ export function DataTable() {
       }),
   });
 
-  // console.log(analysis);
+  console.log(`analysis from the database: ${analysis}`);
 
   // Currently using dummy values for the table rows.
   return (

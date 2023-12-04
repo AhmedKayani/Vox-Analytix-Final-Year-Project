@@ -14,13 +14,13 @@ const createAnalysis = async (req, res) => {
     console.log(formattedData);
 
     // Assuming you want to save this data in the MongoDB database
-    const analysis = new Analysis({
-      description: formattedData, // You need to specify a description
-      file_url: link,
-      owner: req.userId, // You need to specify the owner
-    });
+    // const analysis = new Analysis({
+    //   description: formattedData, // You need to specify a description
+    //   file_url: link,
+    //   owner: req.userId, // You need to specify the owner
+    // });
 
-    await analysis.save();
+    // await analysis.save();
     res.status(201).send(formattedData);
   } catch (error) {
     console.error(error);
@@ -70,6 +70,36 @@ const filterEmotions = (predictions) => {
   return filteredData;
 };
 
+const saveAnalysis = async (req, res) => {
+  // Assuming you want to save this data in the MongoDB database
+  // const analysis = new Analysis({
+  //   description: formattedData, // You need to specify a description
+  //   file_url: link,
+  //   owner: req.userId, // You need to specify the owner
+  // });
+
+  // await analysis.save();
+  try {
+    // Getting these variables from the front end in the ResultForm component.
+    const { analysisData, audioUrl, agentName, reason, date, owner } = req.body;
+
+    // Assuming you want to save this data in the MongoDB database
+    const analysis = new Analysis({
+      description: analysisData,
+      file_url: audioUrl,
+      agent_name: agentName,
+      reason: reason,
+      date: date,
+      owner: owner,
+    });
+    await analysis.save();
+    res.status(201).send(analysis);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error saving analysis");
+  }
+};
+
 const deleteAnalysis = async (req, res) => {
   try {
     const analysis = await Analysis.findOneAndDelete({
@@ -101,6 +131,7 @@ const getAnalysis = async (req, res) => {
 
 module.exports = {
   createAnalysis,
+  saveAnalysis,
   deleteAnalysis,
   getAnalysis,
 };

@@ -22,6 +22,18 @@ const analysisSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    agent_name: {
+      type: String,
+      require: true,
+    },
+    reason: {
+      type: String,
+      require: true,
+    },
+    date: {
+      type: String,
+      require: true,
+    },
     owner: {
       type: String,
       require: false,

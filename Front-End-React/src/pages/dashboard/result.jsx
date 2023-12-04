@@ -17,6 +17,9 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ApiClient } from "@/utils";
 
+// Needed to use the useMutation hook in the ResultForm component.
+import { QueryClient, QueryClientProvider } from "react-query";
+
 import {
   Progress,
   AudioPlayer,
@@ -37,6 +40,9 @@ export function Result() {
   const [selectedText, setSelectedText] = useState(null);
   const [startSeekTimeSec, setStartSeekTimeSec] = useState(0);
 
+  // To use the useMutation hook in the ResultForm component.
+  const queryClient = new QueryClient();
+
   // This is used to get the file and the file's url from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
   const location = useLocation();
   const { file, url } = location.state;
@@ -46,8 +52,8 @@ export function Result() {
     queryKey: ["analysis"],
     queryFn: () =>
       ApiClient.post("/analysis", {
-        url,
-        owner: 1,
+        url, // The URL of the audio file.
+        owner: 1, // ID of the user who is logged in. Currently a dummy value.
       }).then((res) => {
         setAnalysisData(res?.data);
         return res.data;
@@ -152,7 +158,9 @@ export function Result() {
             </div>
             <div className="order-4 w-full p-0 sm:w-2/3 sm:pr-2">
               {/* This is the form at the end where user will type the reason of call rejection. */}
-              <ResultForm />
+              <QueryClientProvider client={queryClient}>
+                <ResultForm audioUrl={url} analysisData={analysisData} />
+              </QueryClientProvider>
             </div>
           </>
         )}
