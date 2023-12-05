@@ -159,7 +159,11 @@ export function Result() {
             <div className="order-4 w-full p-0 sm:w-2/3 sm:pr-2">
               {/* This is the form at the end where user will type the reason of call rejection. */}
               <QueryClientProvider client={queryClient}>
-                <ResultForm audioUrl={url} analysisData={analysisData} />
+                <ResultForm
+                  audioUrl={url}
+                  audioFile={file}
+                  analysisData={analysisData}
+                />
               </QueryClientProvider>
             </div>
           </>

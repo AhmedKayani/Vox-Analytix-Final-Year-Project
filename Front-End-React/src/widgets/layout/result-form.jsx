@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Card,
@@ -27,10 +27,23 @@ import { ApiClient } from "@/utils";
  *
 **/
 
-export function ResultForm({ audioUrl, analysisData }) {
+export function ResultForm({ audioUrl, analysisData, audioFile }) {
   const currentDate = new Date().toISOString().split("T")[0];
   const [agentName, setAgentName] = useState("");
   const [reason, setReason] = useState("");
+
+  // This varibale is used to store the duration of the audio file.
+  const [duration, setDuration] = useState(-1);
+
+  // Use to get the duration of the audio file.
+  useEffect(() => {
+    const audio = new Audio(audioFile[0].preview);
+
+    // This is a workaround to get the duration of the audio file to save in the database.
+    audio.onloadedmetadata = function () {
+      setDuration(Math.floor(audio.duration / 60));
+    };
+  }, [audioFile]);
 
   const mutation = useMutation(
     (newData) => ApiClient.post("/analysis/save", newData),
@@ -58,6 +71,7 @@ export function ResultForm({ audioUrl, analysisData }) {
       agentName, // The name of the agent.
       reason, // The reason for the flagged call.
       date: currentDate, // The current string date.
+      duration: duration, // The duration of the audio file.
       owner: 1, // ID of the user who is logged in. Currently a dummy value.
     });
 

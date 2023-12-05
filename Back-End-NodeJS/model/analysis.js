@@ -34,6 +34,10 @@ const analysisSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    duration: {
+      type: Number,
+      require: true,
+    },
     owner: {
       type: String,
       require: false,

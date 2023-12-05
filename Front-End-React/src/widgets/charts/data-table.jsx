@@ -62,6 +62,7 @@ export function DataTable() {
           <tbody>
             {/* Displaying the past analysis */}
             {!isLoading &&
+              analysis &&
               analysis.map((item, index) => (
                 <tr key={index}>
                   <td className="p-4">
@@ -70,7 +71,7 @@ export function DataTable() {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      3 min
+                      {`${item.duration} min`}
                     </Typography>
                   </td>
                   <td className="p-4">
