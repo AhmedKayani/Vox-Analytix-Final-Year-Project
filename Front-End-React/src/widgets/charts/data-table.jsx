@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { ApiClient } from "@/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -11,58 +11,28 @@ import {
 // The table head.
 const TABLE_HEAD = ["Duration", "Date", "Agent", "Reason", ""];
 
-// Dummy values for the table rows.
-const TABLE_ROWS = [
-  {
-    Duration: "3 min",
-    Date: "2 Aug, 2023",
-    Agent: "John Michael",
-    Reason: "Incomplete information...",
-  },
-  {
-    Duration: "4 min",
-    Date: "4 Aug, 2023",
-    Agent: "Alexa Liras",
-    Reason: "Inadequate call resolution...",
-  },
-  {
-    Duration: "2 min",
-    Date: "5 Aug, 2023",
-    Agent: "Laurent Perrier",
-    Reason: "Lack of empathy...",
-  },
-  {
-    Duration: "5 min",
-    Date: "6 Aug, 2023",
-    Agent: "Michael Levi",
-    Reason: "Unprofessional behavior...",
-  },
-  {
-    Duration: "1 min",
-    Date: "7 Aug, 2023",
-    Agent: "Richard Gran",
-    Reason: "Long call duration...",
-  },
-];
-
 export function DataTable() {
-  // These states contains the past analysis data.
+  // useState varibale contains the past analysis data.
   const [analysis, setAnalysis] = useState([]);
 
   // This is used to get the analysis data from the backend database.
-  const { isLoading, error } = useQuery({
+  const { isLoading, error, data } = useQuery({
     queryKey: ["analysis"],
     queryFn: () =>
-      ApiClient.get("/dataAnalysis", {
+      ApiClient.get("/analysis/dataAnalysis", {
         // ID of the user who is logged in. Currently a dummy value.
         owner: 1,
-      }).then((res) => {
-        setAnalysis(res?.data);
-        return res.data;
       }),
   });
 
-  console.log(`analysis from the database: ${analysis}`);
+  // For updating the analysis state variable.
+  useEffect(() => {
+    if (data) {
+      setAnalysis(data.data);
+    }
+  }, [data]);
+
+  console.log("analysis from the database:", analysis);
 
   // Currently using dummy values for the table rows.
   return (
@@ -90,57 +60,61 @@ export function DataTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ Agent, Duration, Date, Reason }, index) => (
-              <tr key={index} className="">
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {Duration}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {Date}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {Agent}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {Reason}
-                  </Typography>
-                </td>
-                <td className="p-4">
-                  <Typography
-                    as="a"
-                    href="#"
-                    variant="small"
-                    color="blue-gray"
-                    className="font-medium"
-                  >
-                    :
-                  </Typography>
-                </td>
-              </tr>
-            ))}
+            {/* Displaying the past analysis */}
+            {!isLoading &&
+              analysis.map((item, index) => (
+                <tr key={index}>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      3 min
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {item.date}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {item.agent_name}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {/* Only showing the first 9 words of reason for the call rejection. */}
+                      {`${item.reason.split(" ").slice(0, 9).join(" ")} ...`}
+                    </Typography>
+                  </td>
+                  <td className="p-4">
+                    <Typography
+                      as="a"
+                      href="#"
+                      variant="small"
+                      color="blue-gray"
+                      className="font-medium"
+                    >
+                      :
+                    </Typography>
+                  </td>
+                  {/* Add more cells as needed */}
+                </tr>
+              ))}
           </tbody>
         </table>
       </CardBody>
