@@ -22,6 +22,10 @@ const analysisSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    file_name: {
+      type: String,
+      require: true,
+    },
     agent_name: {
       type: String,
       require: true,

@@ -81,13 +81,22 @@ const saveAnalysis = async (req, res) => {
   // await analysis.save();
   try {
     // Getting these variables from the front end in the ResultForm component.
-    const { analysisData, audioUrl, agentName, reason, date, duration, owner } =
-      req.body;
+    const {
+      analysisData,
+      audioUrl,
+      fileName,
+      agentName,
+      reason,
+      date,
+      duration,
+      owner,
+    } = req.body;
 
     // Assuming you want to save this data in the MongoDB database
     const analysis = new Analysis({
       description: analysisData,
       file_url: audioUrl,
+      file_name: fileName,
       agent_name: agentName,
       reason: reason,
       date: date,
