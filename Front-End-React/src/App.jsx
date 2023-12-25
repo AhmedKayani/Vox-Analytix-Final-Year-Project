@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Dashboard, Auth } from "@/layouts";
+import { Dashboard, AdminDashboard, Auth } from "@/layouts";
 
 /**
  *
@@ -23,8 +23,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/admin/*" element={<AdminDashboard />} />
         <Route path="/auth/*" element={<Auth />} />
-        <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+        <Route
+          path="*"
+          element={<Navigate to="/dashboard/upload-audio" replace />}
+        />
       </Routes>
     </QueryClientProvider>
   );

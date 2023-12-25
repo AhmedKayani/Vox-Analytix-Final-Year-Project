@@ -27,24 +27,33 @@ import { ApiClient } from "@/utils";
  *
 **/
 
-export function ResultForm({ audioUrl, analysisData, audioFile }) {
+export function ResultForm({
+  audioUrl,
+  fileName,
+  analysisData,
+  audioFile,
+  agentNameDB = "",
+  reasonDB = "",
+  isDBData = false,
+}) {
   const currentDate = new Date().toISOString().split("T")[0];
-  const [agentName, setAgentName] = useState("");
-  const [reason, setReason] = useState("");
+  const [agentName, setAgentName] = useState(agentNameDB);
+  const [reason, setReason] = useState(reasonDB);
 
   // This varibale is used to store the duration of the audio file.
   const [duration, setDuration] = useState(-1);
 
   // Use to get the duration of the audio file.
-  useEffect(() => {
-    const audio = new Audio(audioFile[0].preview);
+  if (!isDBData) {
+    useEffect(() => {
+      const audio = new Audio(audioFile[0].preview);
 
-    // This is a workaround to get the duration of the audio file to save in the database.
-    audio.onloadedmetadata = function () {
-      setDuration(Math.floor(audio.duration / 60));
-    };
-  }, [audioFile]);
-
+      // This is a workaround to get the duration of the audio file to save in the database.
+      audio.onloadedmetadata = function () {
+        setDuration(Math.floor(audio.duration / 60));
+      };
+    }, [audioFile]);
+  }
   const mutation = useMutation(
     (newData) => ApiClient.post("/analysis/save", newData),
     {
@@ -68,6 +77,7 @@ export function ResultForm({ audioUrl, analysisData, audioFile }) {
     mutation.mutate({
       analysisData, // The analysis data from the backend.
       audioUrl, // The URL of the audio file.
+      fileName, // The name of the audio file.
       agentName, // The name of the agent.
       reason, // The reason for the flagged call.
       date: currentDate, // The current string date.
@@ -98,6 +108,7 @@ export function ResultForm({ audioUrl, analysisData, audioFile }) {
             color="blue"
             value={agentName}
             onChange={(e) => setAgentName(e.target.value)}
+            disabled={isDBData}
           />
           <Textarea
             label="Reason for Flagged Call"
@@ -105,12 +116,14 @@ export function ResultForm({ audioUrl, analysisData, audioFile }) {
             color="blue"
             value={reason}
             onChange={(e) => setReason(e.target.value)}
+            disabled={isDBData}
           />
           <Button
             color="blue"
             ripple={true}
             className="w-24 self-end"
             type="submit"
+            disabled={isDBData}
           >
             Save
           </Button>

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ApiClient } from "@/utils";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -103,15 +104,23 @@ export function DataTable() {
                     </Typography>
                   </td>
                   <td className="p-4">
-                    <Typography
-                      as="a"
-                      href="#"
-                      variant="small"
-                      color="blue-gray"
-                      className="font-medium"
+                    <Link
+                      key={index}
+                      to={{
+                        pathname: "/dashboard/result-past-page",
+                      }}
+                      state={{
+                        isDBData: true,
+                        analysisData: item.description,
+                        url: item.file_url,
+                        fileName: item.file_name,
+                        agentName: item.agent_name,
+                        reason: item.reason,
+                      }}
+                      className="text-blue-gray font-medium"
                     >
                       :
-                    </Typography>
+                    </Link>
                   </td>
                   {/* Add more cells as needed */}
                 </tr>

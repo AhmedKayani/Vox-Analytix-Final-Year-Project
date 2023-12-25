@@ -12,6 +12,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+import { CardWrapper } from "@/widgets/cards";
+
 const data = {
   labels: ["Angry", "Disgust", "Sad"],
   datasets: [
@@ -44,19 +46,9 @@ const options = {
 
 export function DoughnutChart() {
   return (
-    <Card>
-      <CardHeader className="p-5" variant="gradient" color="blue">
-        <Typography variant="h6" color="white">
-          Negative Emotions
-        </Typography>
-      </CardHeader>
-      <CardBody>
-        <Doughnut data={data} options={options} />
-      </CardBody>
-      <CardFooter className="pt-0">
-        <Typography variant="paragraph">Updated 2 minutes ago</Typography>
-      </CardFooter>
-    </Card>
+    <CardWrapper title="Negative Emotions" span="1">
+      <Doughnut data={data} options={options} />
+    </CardWrapper>
   );
 }
 

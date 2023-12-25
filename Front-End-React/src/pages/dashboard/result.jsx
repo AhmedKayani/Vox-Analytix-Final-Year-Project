@@ -36,16 +36,39 @@ import {
  *
  */
 export function Result() {
+  // This is used to get the file and the file's url from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
+  const location = useLocation();
+
+  // File is the audio file, url is the online url of the uploaded audio file.
+  const { file, url } = location.state;
+
+  // Getting the name of the file when getting new analysis.
+  const fileName = file[0].path;
+
+  // For implementing looking at the past analysis
+  /**
+   *
+   * The main issues so far:
+   * 1) Using location state to get the file and url from the Upload Audio Page
+   * specifically from the useNavigate hook in the DropzoneUpload component.
+   *
+   * 2) How to send the past analysis data from the table to the front end.
+   *
+   *
+   * Steps to do:
+   * 1) Send a boolean variable isPastAnalysis to the this component from both
+   * DropzoneUpload and database table. Using if condition do what is needed.
+   *
+   * 2) Replace the file and url with the past file and url.
+   *
+   **/
+
   const [analysisData, setAnalysisData] = useState([]);
   const [selectedText, setSelectedText] = useState(null);
   const [startSeekTimeSec, setStartSeekTimeSec] = useState(0);
 
   // To use the useMutation hook in the ResultForm component.
   const queryClient = new QueryClient();
-
-  // This is used to get the file and the file's url from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
-  const location = useLocation();
-  const { file, url } = location.state;
 
   // This is used to get the analysis data from the backend.
   const { isLoading, error } = useQuery({
@@ -88,7 +111,11 @@ export function Result() {
       <div className="flex flex-col flex-wrap gap-y-12">
         <div className="mx-auto w-full sm:w-full">
           {/* Audio Player component. The startSeekTimeSec is used to jump to a required time of audio file. */}
-          <AudioPlayer file={file} startSeekTimeSec={startSeekTimeSec} />
+          <AudioPlayer
+            fileUrl={url}
+            fileName={fileName}
+            startSeekTimeSec={startSeekTimeSec}
+          />
         </div>
 
         {/* Show the progress circle while analyzing the call and fetching the emotions. */}
@@ -161,6 +188,7 @@ export function Result() {
               <QueryClientProvider client={queryClient}>
                 <ResultForm
                   audioUrl={url}
+                  fileName={fileName}
                   audioFile={file}
                   analysisData={analysisData}
                 />

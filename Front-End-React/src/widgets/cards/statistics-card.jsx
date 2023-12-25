@@ -48,8 +48,24 @@ export function StatisticsCard({
       {footer && (
         <CardFooter className="border-t border-blue-gray-50 p-4">
           {/* {footer} */}
-          <ul className="flex list-none flex-wrap gap-2">
+          <ul className="flex list-none flex-wrap gap-x-1 gap-y-2">
             {topFiveEmotions?.map((data, index) => (
+              // <li
+              //   onClick={() => handleEmotionClick(data?.text, data?.timeBegin)}
+              //   key={index}
+              //   className="flex items-center"
+              // >
+              //   <Chip
+              //     key={index}
+              //     color={color}
+              //     variant="gradient"
+              //     size="lg"
+              //     value={`${data?.timeBegin?.minutes}:${
+              //       data?.timeBegin?.seconds.toString().length === 1 ? "0" : ""
+              //     }${data?.timeBegin?.seconds}`}
+              //     className="rounded-full"
+              //   />
+              // </li>
               <li
                 onClick={() => handleEmotionClick(data?.text, data?.timeBegin)}
                 key={index}
@@ -60,9 +76,11 @@ export function StatisticsCard({
                   color={color}
                   variant="gradient"
                   size="lg"
-                  value={`${data?.timeBegin?.minutes}:${
-                    data?.timeBegin?.seconds.toString().length === 1 ? "0" : ""
-                  }${data?.timeBegin?.seconds}`}
+                  value={`${data?.timeBegin?.minutes
+                    .toString()
+                    .padStart(2, "0")}:${data?.timeBegin?.seconds
+                    .toString()
+                    .padStart(2, "0")}`}
                   className="rounded-full"
                 />
               </li>

@@ -1,12 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
-import {
-  Sidenav,
-  DashboardNavbar,
-  Configurator,
-  Footer,
-} from "@/widgets/layout";
+import { Sidenav, DashboardNavbar, Configurator } from "@/widgets/layout";
 import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 
@@ -35,16 +30,18 @@ import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
  *
  **/
 
-export function Dashboard() {
+export function AdminDashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
 
-  const analystRoutes = routes.filter((route) => route.layout === "dashboard");
+  // Only show the admin dashboard pages
+  const adminRoutes = routes.filter((route) => route.layout === "admin");
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
+      {/* This is the sidenav for the admin dashboard */}
       <Sidenav
-        routes={analystRoutes}
+        routes={adminRoutes}
         brandImg={
           sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
         }
@@ -62,9 +59,10 @@ export function Dashboard() {
           <Cog6ToothIcon className="h-5 w-5" />
         </IconButton>
         <Routes>
+          {/* Without these, the routes won't render any of the pages contents */}
           {routes.map(
             ({ layout, pages }) =>
-              layout === "dashboard" &&
+              layout === "admin" &&
               pages.map(({ path, element }) => (
                 <Route exact path={path} element={element} />
               ))
@@ -75,6 +73,6 @@ export function Dashboard() {
   );
 }
 
-Dashboard.displayName = "/src/layout/dashboard.jsx";
+AdminDashboard.displayName = "/src/layout/adminDashboard.jsx";
 
-export default Dashboard;
+export default AdminDashboard;

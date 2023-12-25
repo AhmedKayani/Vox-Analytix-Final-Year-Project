@@ -19,12 +19,13 @@ export function AudioPlayer(props) {
     <Card>
       <CardHeader variant="gradient" color="blue" className="p-5">
         <Typography variant="h6" color="white">
-          Audio Player ({props.file[0].path})
+          Audio Player ({props.fileName})
         </Typography>
       </CardHeader>
       <CardBody className="px-12 pb-12 pt-8">
         <ReactAudioPlayer
-          src={props.file[0].preview}
+          // src={props.file[0].preview}
+          src={props.fileUrl}
           controls
           className="w-full"
           ref={(element) => setAudioPlayer(element)}

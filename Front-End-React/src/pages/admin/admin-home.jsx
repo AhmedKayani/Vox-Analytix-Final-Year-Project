@@ -22,7 +22,7 @@ import { DataTable, DoughnutChart, LineChart } from "@/widgets/charts";
  *
  **/
 
-export function Home() {
+export function AdminHome() {
   return (
     <div className="mt-12">
       {/* This div contains the cards that will be using to display the overall analysis stats. */}
@@ -63,4 +63,4 @@ export function Home() {
   );
 }
 
-export default Home;
+export default AdminHome;

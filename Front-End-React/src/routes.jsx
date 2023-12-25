@@ -15,7 +15,11 @@ import {
   HelpAndSupport,
   Account,
   Result,
+  ResultPast,
 } from "@/pages/dashboard";
+
+import { AdminHome } from "@/pages/admin";
+
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -23,6 +27,17 @@ const icon = {
 };
 
 export const routes = [
+  {
+    layout: "admin",
+    pages: [
+      {
+        icon: <HomeIcon {...icon} />,
+        name: "Dashboard Home",
+        path: "/home",
+        element: <AdminHome />,
+      },
+    ],
+  },
   {
     layout: "dashboard",
     pages: [
@@ -66,6 +81,11 @@ export const routes = [
         name: "ResulPage",
         path: "/result-page",
         element: <Result />,
+      },
+      {
+        name: "ResulPastPage",
+        path: "/result-past-page",
+        element: <ResultPast />,
       },
     ],
   },

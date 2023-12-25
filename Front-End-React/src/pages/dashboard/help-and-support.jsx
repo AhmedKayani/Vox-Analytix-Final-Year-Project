@@ -1,92 +1,64 @@
-import React from "react";
-import {
-  Typography,
-  Alert,
-  Card,
-  CardHeader,
-  CardBody,
-} from "@material-tailwind/react";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import React, { useState } from "react";
+
+import { CardWrapper } from "@/widgets/cards";
+
+import { Button, Textarea, Avatar, Typography } from "@material-tailwind/react";
+
+import { DataTable } from "@/widgets/charts";
+
+// This component page will be a messaging page for the user to contact the admin for help and support.
+// The 2/3 of first row will contain a box for the user to type in their message and send it. The remaining 1/3 will contain another box that shows the image and name of the admin.
+// The second row will contain a box that shows the table of messages that the user has sent to the admin.
 
 export function HelpAndSupport() {
-  const [showAlerts, setShowAlerts] = React.useState({
-    blue: true,
-    green: true,
-    orange: true,
-    red: true,
-  });
-  const [showAlertsWithIcon, setShowAlertsWithIcon] = React.useState({
-    blue: true,
-    green: true,
-    orange: true,
-    red: true,
-  });
-  const alerts = ["blue", "green", "orange", "red"];
+  // This variable is used to store the reason for the message.
+  const [message, setMessage] = useState("");
 
   return (
-    <div className="mx-auto my-20 flex max-w-screen-lg flex-col gap-8">
-      <Card>
-        <CardHeader
-          color="transparent"
-          floated={false}
-          shadow={false}
-          className="m-0 p-4"
-        >
-          <Typography variant="h5" color="blue-gray">
-            Alerts
-          </Typography>
-        </CardHeader>
-        <CardBody className="flex flex-col gap-4 p-4">
-          {alerts.map((color) => (
-            <Alert
-              key={color}
-              show={showAlerts[color]}
-              color={color}
-              dismissible={{
-                onClose: () =>
-                  setShowAlerts((current) => ({ ...current, [color]: false })),
-              }}
-            >
-              A simple {color} alert with an <a href="#">example link</a>. Give
-              it a click if you like.
-            </Alert>
-          ))}
-        </CardBody>
-      </Card>
-      <Card>
-        <CardHeader
-          color="transparent"
-          floated={false}
-          shadow={false}
-          className="m-0 p-4"
-        >
-          <Typography variant="h5" color="blue-gray">
-            Alerts with Icon
-          </Typography>
-        </CardHeader>
-        <CardBody className="flex flex-col gap-4 p-4">
-          {alerts.map((color) => (
-            <Alert
-              key={color}
-              show={showAlertsWithIcon[color]}
-              color={color}
-              icon={
-                <InformationCircleIcon strokeWidth={2} className="h-6 w-6" />
-              }
-              dismissible={{
-                onClose: () =>
-                  setShowAlertsWithIcon((current) => ({
-                    ...current,
-                    [color]: false,
-                  })),
-              }}
-            >
-              A simple {color} alert with an <a href="#">example link</a>. Give
-              it a click if you like.
-            </Alert>
-          ))}
-        </CardBody>
-      </Card>
+    <div className="mt-12">
+      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+        {/* This contains the message box */}
+
+        <CardWrapper title="Message" span="2">
+          <div className="flex flex-col">
+            <form>
+              <Textarea
+                label="Type your complaint here..."
+                size="lg"
+                color="blue"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <Button
+                color="blue"
+                ripple={true}
+                className="w-24 self-end"
+                type="submit"
+              >
+                Send
+              </Button>
+            </form>
+          </div>
+        </CardWrapper>
+        <CardWrapper title="Admin" span="1">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+            <Avatar
+              src="https://docs.material-tailwind.com/img/face-2.jpg"
+              alt="avatar"
+              size="xl"
+            />
+            <div className=" text-center">
+              <Typography variant="h6">Sami Zahir</Typography>
+              <Typography variant="small" color="gray" className="font-normal">
+                sami@gmail.com
+              </Typography>
+            </div>
+          </div>
+        </CardWrapper>
+      </div>
+      <div className="mb-4 w-full">
+        <DataTable />
+      </div>
     </div>
   );
 }
