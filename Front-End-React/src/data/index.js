@@ -17,3 +17,5 @@ export * from "@/data/upload-audio-faq";
 export * from "@/data/emotion-detected-data";
 
 export * from "@/data/statistics-card-data-admin-home";
+
+export * from "@/data/statistics-card-data-admin-queries";

@@ -7,12 +7,13 @@ import { CardWrapper } from "@/widgets/cards";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function PieChart({ data, title }) {
+export function PieChart({ data, title, span = "2" }) {
   const options = {
     plugins: {
       legend: {
         display: true,
-        position: "right",
+        position: "top",
+        align: "start", // Add this line to left align the legend text
       },
       labels: {
         display: true,
@@ -23,7 +24,7 @@ export function PieChart({ data, title }) {
   };
 
   return (
-    <CardWrapper title={title} span="2">
+    <CardWrapper title={title} span={span}>
       <Pie data={data} options={options} />
     </CardWrapper>
   );

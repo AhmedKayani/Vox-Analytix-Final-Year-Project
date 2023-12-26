@@ -10,3 +10,4 @@ export * from "@/widgets/layout/audio-player";
 export * from "@/widgets/layout/transcription-box";
 export * from "@/widgets/layout/emotions-detected";
 export * from "@/widgets/layout/result-form";
+export * from "@/widgets/layout/query-response-box";

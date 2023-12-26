@@ -5,7 +5,7 @@ import { Typography } from "@material-tailwind/react";
 import { StatisticsCard } from "@/widgets/cards";
 
 // This import is used for the sample data for the statistics card.
-import { statisticsCardsData } from "@/data";
+import { statisticsCardDataAdminHome } from "@/data";
 
 // This import is used for the charts.
 import { DataTable, DoughnutChart, LineChart } from "@/widgets/charts";
@@ -28,7 +28,7 @@ export function AdminHome() {
       {/* This div contains the cards that will be using to display the overall analysis stats. */}
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {/* Displaying sample data like "Total Calls Analyzed", "Most Common Emotion" etc from the statisticsCardsData.js file. */}
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+        {statisticsCardDataAdminHome.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
             {...rest}
@@ -48,7 +48,7 @@ export function AdminHome() {
       {/* This div contains the charts. The doughnut and line graph chart will be rendered from here */}
       <div className="mb-12 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {/* This is the doughnut chart */}
-        <DoughnutChart />
+        {/* <DoughnutChart /> */}
 
         {/* This is the line graph chart */}
         {/* <LineChart /> */}

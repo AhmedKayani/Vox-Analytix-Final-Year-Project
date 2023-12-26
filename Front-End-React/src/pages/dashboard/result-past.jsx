@@ -46,40 +46,13 @@ export function ResultPast() {
     return { minutes, seconds: remainingSeconds };
   }
 
-  // // Making data suitable for line chart
-  // const chartData = {
-  //   labels: analysisData.map((d) => {
-  //     const secMin = convertSecondsToMinutesAndSeconds(d.time.begin);
-  //     // Make the minutes and seconds two digits if one
-  //     secMin.minutes = secMin.minutes.toString().padStart(2, "0");
-  //     secMin.seconds = secMin.seconds.toString().padStart(2, "0");
-  //     return `${secMin.minutes}:${secMin.seconds}`;
-  //   }), // Use the 'begin' time as the label
-  //   datasets: [
-  //     "Anger",
-  //     "Disappointment",
-  //     "Disgust",
-  //     "Distress",
-  //     "Surprise (negative)",
-  //   ].map((emotion) => ({
-  //     label: emotion,
-  //     data: analysisData.map(
-  //       (d) => d.emotions.find((e) => e.name === emotion).score
-  //     ),
-  //     fill: true,
-  //     borderColor: emotionColors[emotion], // Generate a random color for each line
-  //     pointRadius: 0, // Hide the points
-  //     pointHitRadius: 10, // Area where the point can be hovered
-  //   })),
-  // };
-
-  // New try
+  // Making data suitable for line chart
   const emotionStyles = {
-    Anger: { color: "red", borderDash: [] },
-    Disappointment: { color: "blue", borderDash: [5, 5] }, // Dashed line
-    Disgust: { color: "green", borderDash: [] },
-    Distress: { color: "purple", borderDash: [5, 5] }, // Dashed line
-    "Surprise (negative)": { color: "orange", borderDash: [] },
+    Anger: { color: "#EC4899", borderDash: [] },
+    Distress: { color: "#F97316", borderDash: [5, 5] }, // Dashed line
+    Disappointment: { color: "#3B82F6", borderDash: [5, 5] }, // Dashed line
+    Disgust: { color: "#64748B", borderDash: [] },
+    "Surprise (negative)": { color: "#84CC16", borderDash: [] },
   };
 
   // Prepare the data for the line chart
@@ -121,11 +94,11 @@ export function ResultPast() {
 
   // Mapping of emotions to colors
   const emotionColors = {
-    Anger: "red",
-    Disappointment: "blue",
-    Disgust: "green",
-    Distress: "purple",
-    "Surprise (negative)": "orange",
+    Anger: "#EC4899",
+    Distress: "#F97316",
+    Disappointment: "#3B82F6",
+    Disgust: "#64748B",
+    "Surprise (negative)": "#84CC16",
   };
 
   // For Barchart Data

@@ -2,7 +2,6 @@ import {
   HomeIcon,
   UserIcon,
   TableCellsIcon,
-  BellIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
   DocumentArrowUpIcon,
@@ -18,7 +17,7 @@ import {
   ResultPast,
 } from "@/pages/dashboard";
 
-import { AdminHome } from "@/pages/admin";
+import { AdminHome, AnalystQueries, AnalystInfo } from "@/pages/admin";
 
 import { SignIn, SignUp } from "@/pages/auth";
 
@@ -35,6 +34,30 @@ export const routes = [
         name: "Dashboard Home",
         path: "/home",
         element: <AdminHome />,
+      },
+      {
+        icon: <UserPlusIcon {...icon} />,
+        name: "Analysts Info",
+        path: "/analyst-info",
+        element: <AnalystInfo />,
+      },
+      {
+        icon: <QuestionMarkCircleIcon {...icon} />,
+        name: "Analysts Queries",
+        path: "/analyst-queries",
+        element: <AnalystQueries />,
+      },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Account",
+        path: "/account",
+        element: <Account />,
+      },
+      {
+        icon: <ArrowRightOnRectangleIcon {...icon} />,
+        name: "Log Out",
+        path: "/auth/sign-in",
+        element: <SignIn />,
       },
     ],
   },
