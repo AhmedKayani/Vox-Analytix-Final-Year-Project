@@ -33,7 +33,15 @@ export function DataTable() {
     }
   }, [data]);
 
-  console.log("analysis from the database:", analysis);
+  // Function to solve the issue of the duration showing 0 min when the duration is less than 1 min.
+  const duration = (duration) => {
+    if (duration < 1) {
+      return "1";
+    }
+    return duration;
+  };
+
+  // console.log("analysis from the database:", analysis);
 
   // Currently using dummy values for the table rows.
   return (
@@ -72,7 +80,7 @@ export function DataTable() {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {`${item.duration} min`}
+                      {`${duration(item.duration)} min`}
                     </Typography>
                   </td>
                   <td className="p-4">

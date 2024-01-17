@@ -16,14 +16,14 @@ import { useLocation } from "react-router-dom";
 // Needed to use the useMutation hook in the ResultForm component.
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { LineChart, BarChart, PieChart } from "@/widgets/charts";
-
 import {
   AudioPlayer,
   EmotionsDetected,
   TranscriptionBox,
   ResultForm,
 } from "@/widgets/layout";
+
+import { LineChart, BarChart, PieChart } from "@/widgets/charts";
 
 /**
  *
@@ -32,6 +32,7 @@ import {
  * @returns a JSX element, which represents the structure and content of the HTML to be rendered on the page.
  *
  */
+
 export function ResultPast() {
   // This is used to get the file and the file's url from the past analysis table, specifically from the useNavigate hook in the table component.
   const location = useLocation();
@@ -191,7 +192,6 @@ export function ResultPast() {
         </div>
 
         {/* Show the transcription box, emotions detected and result form if there is no error and the emotions are fetched. */}
-
         <div className="order-2 m-0 w-full p-0">
           <TranscriptionBox selectedText={selectedText} />
         </div>

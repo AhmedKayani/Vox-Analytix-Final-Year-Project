@@ -19,6 +19,8 @@ import {
 
 import { AdminHome, AnalystQueries, AnalystInfo } from "@/pages/admin";
 
+import { LandingPage } from "@/pages/Landing";
+
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -124,6 +126,16 @@ export const routes = [
         name: "sign up",
         path: "/sign-up",
         element: <SignUp />,
+      },
+    ],
+  },
+  {
+    layout: "welcome",
+    pages: [
+      {
+        name: "Landing Page",
+        path: "/landing-page",
+        element: <LandingPage />,
       },
     ],
   },

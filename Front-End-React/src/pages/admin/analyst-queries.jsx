@@ -18,6 +18,8 @@ import { StatisticsCard, CardWrapper } from "@/widgets/cards";
 // This import is used for the sample data for the statistics card.
 import { statisticsCardDataAdminQueries } from "@/data";
 
+import profilePicture1 from "../../../public/img/profile-picture-1.png";
+import profilePicture2 from "../../../public/img/profile-picture-2.png";
 // This import is used for the charts.
 import { PieChart } from "@/widgets/charts";
 
@@ -52,11 +54,16 @@ export const AnalystQueries = () => {
       <div className="mb-6 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         <PieChart data={queriesData} title="Pie Chart" span="1" />
       </div>
-      <div className="mb-12 flex w-full flex-row gap-y-10">
+      <div className="mb-12 flex w-full flex-col gap-y-4">
         <QueryResponseBox
-          analystPic={"https://i.imgur.com/8Km9tLL.png"}
-          name="Ahmed"
+          analystPic={profilePicture1}
+          name="Ahmed Kayani"
           message="Hello, I am having trouble with the analysis. Can you please help me out?"
+        />
+        <QueryResponseBox
+          analystPic={profilePicture2}
+          name="Sami Zahir"
+          message="Hello, I am having trouble with Loging in and out?"
         />
       </div>
     </div>

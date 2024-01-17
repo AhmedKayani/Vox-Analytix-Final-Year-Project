@@ -9,6 +9,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function PieChart({ data, title, span = "2" }) {
   const options = {
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -24,8 +25,10 @@ export function PieChart({ data, title, span = "2" }) {
   };
 
   return (
-    <CardWrapper title={title} span={span}>
-      <Pie data={data} options={options} />
+    <CardWrapper title={title} span={span} className="h-full w-full">
+      <div style={{ height: "500px", width: "500px" }}>
+        <Pie data={data} options={options} />
+      </div>
     </CardWrapper>
   );
 }

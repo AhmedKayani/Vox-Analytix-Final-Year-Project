@@ -41,15 +41,16 @@ export function AdminDashboard() {
     <div className="min-h-screen bg-blue-gray-50/50">
       {/* This is the sidenav for the admin dashboard */}
       <Sidenav
+        role="Admin"
         routes={adminRoutes}
         brandImg={
           sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
         }
       />
       <div className="p-4 xl:ml-80">
-        <DashboardNavbar />
-        <Configurator />
-        <IconButton
+        <DashboardNavbar dashboardType="admin" />
+        {/* <Configurator /> */}
+        {/* <IconButton
           size="lg"
           color="white"
           className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
@@ -57,7 +58,7 @@ export function AdminDashboard() {
           onClick={() => setOpenConfigurator(dispatch, true)}
         >
           <Cog6ToothIcon className="h-5 w-5" />
-        </IconButton>
+        </IconButton> */}
         <Routes>
           {/* Without these, the routes won't render any of the pages contents */}
           {routes.map(

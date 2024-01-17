@@ -56,9 +56,7 @@ export function Configurator() {
   };
 
   React.useEffect(() => {
-    const stars = fetch(
-      "https://api.github.com/repos/creativetimofficial/material-tailwind-dashboard-react"
-    )
+    const stars = fetch("https://github.com/AhmedKayani/VoxAnalytix")
       .then((response) => response.json())
       .then((data) => setStars(formatNumber(data.stargazers_count, 1)));
   }, []);
@@ -174,7 +172,7 @@ export function Configurator() {
           </div>
           <a
             className="mx-auto flex items-center justify-center gap-2"
-            href="https://github.com/creativetimofficial/material-tailwind-dashboard-react"
+            href="https://github.com/AhmedKayani/VoxAnalytix"
             target="_blank"
             rel="noreferrer"
           >

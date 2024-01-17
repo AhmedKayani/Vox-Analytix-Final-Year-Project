@@ -19,3 +19,9 @@ export * from "@/data/emotion-detected-data";
 export * from "@/data/statistics-card-data-admin-home";
 
 export * from "@/data/statistics-card-data-admin-queries";
+
+export * from "@/data/contact-data";
+export * from "@/data/features-data";
+export * from "@/data/team-data";
+
+export * from "@/data/analyst-queries-data";

@@ -39,7 +39,6 @@ import routes from "@/routes";
  **/
 
 export function Auth() {
-
   // This array contains the routes for the navigation bar at the top which is currently diasbled.
   const navbarRoutes = [
     {
@@ -67,9 +66,9 @@ export function Auth() {
   return (
     <div className="relative min-h-screen w-full">
       {/* This div shows a navbar at the top to display different pages. */}
-      <div className="container relative z-40 mx-auto p-4">
+      {/* <div className="container relative z-40 mx-auto p-4">
         <Navbar routes={navbarRoutes} />
-      </div>
+      </div> */}
       <Routes>
         {routes.map(
           ({ layout, pages }) =>
@@ -80,7 +79,7 @@ export function Auth() {
         )}
       </Routes>
       <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-white">
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );

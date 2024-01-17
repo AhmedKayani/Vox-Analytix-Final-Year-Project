@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+
+import { useState } from "react";
+
 import logoLinearWhite from "/img/Logo-vertical-white.png";
 import {
+  Alert,
   Card,
   CardHeader,
   CardBody,
@@ -13,42 +17,25 @@ import {
   Option,
 } from "@material-tailwind/react";
 
-/**
- *
- * SignUp Component
- *
- * The SignUp component is a React component that renders a sign-up form, including:
- * - Background image (img)
- * - Sign-up form (Card) with:
- *   - Header (CardHeader)
- *   - Body (CardBody) with form elements:
- *     - Name, email, and password input (Input)
- *     - Role selection (Select) with options (Option)
- *     - Terms and conditions agreement (Checkbox)
- *   - Footer (CardFooter) with:
- *     - Submit button (Button)
- *     - Text (Typography)
- *     - Navigation link (Link) to the sign-in page
- *
- * Props:
- * - This component does not accept any props.
- *
- * Dependencies:
- * The SignUp component depends on the following libraries:
- * - react
- * - @mui/material
- * - @mui/icons-material
- * - react-router-dom
- *
- * Notes:
- * The SignUp component uses the Card component from the @mui/material library to display the sign-up form.
- * - The SignUp component uses the Input, Select, Checkbox, Button, Typography, and Link components from the @mui/material library to display the form elements.
- * - The SignUp component uses the CardHeader, CardBody, and CardFooter components to display the header, body, and footer of the Card component.
- * - The SignUp component uses an image component to display a background image.
- *
- **/
+import { useSignUp } from "@/hooks";
 
 export function SignUp() {
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("Admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { signup, error, isLoading } = useSignUp();
+
+  console.log("This is the error: ", error);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(username, role, email, password);
+
+    await signup("profilePicture.png", username, role, email, password);
+  };
+
   return (
     <>
       <img
@@ -65,36 +52,77 @@ export function SignUp() {
           >
             <img src={logoLinearWhite} className="h-28 w-32 object-cover" />
           </CardHeader>
-          <CardBody className="flex flex-col gap-4 py-2">
-            <Input label="Name" size="lg" />
-            <Select label="Role">
-              <Option>Admin</Option>
-              <Option>Analyst</Option>
-            </Select>
-            <Input type="email" label="Email" size="lg" />
-            <Input type="password" label="Password" size="lg" />
-            <div className="-ml-2.5">
+          <form onSubmit={handleSubmit}>
+            <CardBody className="mb-3 flex flex-col gap-4 py-2">
+              <Input
+                label="Username"
+                size="lg"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+              <Select label="Role">
+                <Option>Admin</Option>
+                <Option>Analyst</Option>
+              </Select>
+              <Input
+                type="email"
+                label="Email"
+                size="lg"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <Input
+                type="password"
+                label="Password"
+                size="lg"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <Input
+                type="file"
+                label="Profile Picture"
+                size="lg"
+                accept="image/*"
+              />
+              {/* <div className="-ml-2.5">
               <Checkbox label="I agree the Terms and Conditions" />
-            </div>
-          </CardBody>
-          <CardFooter className="py-3 pt-0">
-            <Button variant="gradient" fullWidth>
-              Sign Up
-            </Button>
-            <Typography variant="small" className="mt-3 flex justify-center">
-              Already have an account?
-              <Link to="/auth/sign-in">
-                <Typography
-                  as="span"
-                  variant="small"
-                  color="blue"
-                  className="ml-1 font-bold"
+            </div> */}
+            </CardBody>
+            <CardFooter className="mr-0 py-3 pt-0">
+              <Button
+                variant="gradient"
+                type="submit"
+                disabled={isLoading}
+                fullWidth
+              >
+                Sign Up
+              </Button>
+              {error && (
+                <Alert
+                  variant="gradient"
+                  color="red"
+                  className="mr-0 mt-2 px-0 py-2"
                 >
-                  Sign in
-                </Typography>
-              </Link>
-            </Typography>
-          </CardFooter>
+                  <Typography variant="small" className="mr-0 text-center">
+                    {error}
+                  </Typography>
+                </Alert>
+              )}
+              <Typography variant="small" className="mt-3 flex justify-center">
+                Already have an account?
+                <Link to="/auth/sign-in">
+                  <Typography
+                    as="span"
+                    variant="small"
+                    color="blue"
+                    className="ml-1 font-bold"
+                  >
+                    Sign in
+                  </Typography>
+                </Link>
+              </Typography>
+            </CardFooter>
+          </form>
         </Card>
       </div>
     </>

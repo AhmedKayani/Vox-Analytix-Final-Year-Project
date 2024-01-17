@@ -12,75 +12,26 @@ import profilePic from "../../../public/img/ProfilePicture.png";
 
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
-/**
- *
- * Sidenav Component
- *
- * The Sidenav component is a React component that renders a side navigation bar. It allows users to navigate to different pages of the application.
- *
- * Components:
- * - Avatar: Displays the user's profile picture.
- * - Typography: Displays text.
- * - IconButton: A button component with an icon.
- * - XMarkIcon: An icon component displaying an X mark.
- * - NavLink: Allows navigation to a page.
- * - Button: A button component for navigation.
- *
- * Props:
- * - brandImg (string, default: "/img/logo-ct.png"): URL of the brand image.
- * - brandName (string, default: "Call Analysis"): Name of the brand.
- * - routes (array): An array of route objects, each containing:
- *   - layout (string): Layout of the page.
- *   - title (string): Title of the page.
- *   - pages (array of objects): Pages with properties:
- *     - icon: Icon component representing the page.
- *     - name: Name of the page.
- *     - path: Path of the page.
- *
- * Usage Example:
- * ```jsx
- * import Sidenav from './Sidenav';
- *
- * const navigationRoutes = [
- *   {
- *     layout: "dashboard",
- *     title: "Dashboard",
- *     pages: [
- *       {
- *         icon: <DashboardIcon />,
- *         name: "Dashboard Home",
- *         path: "/home",
- *       },
- *       // Add more pages as needed
- *     ],
- *   },
- *   // Add more routes as needed
- * ];
- *
- * // Inside a React component's render method:
- * <Sidenav brandImg="/img/logo.png" brandName="My App" routes={navigationRoutes} />
- * ```
- *
- * Dependencies:
- * - This component relies on the following libraries:
- *   - react
- *   - @mui/material
- *   - @mui/icons-material
- *   - prop-types
- *
- * Notes:
- * - The Sidenav component uses components from the @mui/material library for rendering.
- * - It manages the state of the navigation bar using the useMaterialTailwindController hook.
- *
- **/
+import { useAuthContext } from "@/hooks/use-auth-context";
 
-export function Sidenav({ brandImg, brandName, routes }) {
+import { useLogOut } from "@/hooks";
+
+export function Sidenav({ brandImg, brandName, routes, role = "" }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes = {
     dark: "bg-gradient-to-br from-blue-gray-800 to-blue-gray-900",
     white: "bg-white shadow-lg",
     transparent: "bg-transparent",
+  };
+
+  // Auth Context
+  const { user } = useAuthContext();
+
+  // Logout Functionlity
+  const { logout } = useLogOut();
+  const handleLogOutClick = () => {
+    logout();
   };
 
   return (
@@ -107,14 +58,14 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 />
                 <div>
                   <Typography variant="h6" color="white">
-                    Ahmed Shahzad
+                    {user?.username}
                   </Typography>
                   <Typography
                     variant="small"
                     color="white"
                     className="font-normal"
                   >
-                    QA Analyst
+                    {role}
                   </Typography>
                 </div>
               </div>
@@ -146,7 +97,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 )}
                 {pages.map(({ icon, name, path }) => (
                   <li key={name}>
-                    {icon && (
+                    {icon && name !== "Log Out" && (
                       <NavLink to={`/${layout}${path}`}>
                         {({ isActive }) => (
                           <Button
@@ -158,6 +109,33 @@ export function Sidenav({ brandImg, brandName, routes }) {
                                 ? "white"
                                 : "blue-gray"
                             }
+                            className="flex items-center gap-4 px-4 capitalize"
+                            fullWidth
+                          >
+                            {icon}
+                            <Typography
+                              color="inherit"
+                              className="font-medium capitalize"
+                            >
+                              {name}
+                            </Typography>
+                          </Button>
+                        )}
+                      </NavLink>
+                    )}
+                    {icon && name === "Log Out" && (
+                      <NavLink to={`${path}`}>
+                        {({ isActive }) => (
+                          <Button
+                            variant={isActive ? "gradient" : "text"}
+                            color={
+                              isActive
+                                ? sidenavColor
+                                : sidenavType === "dark"
+                                ? "white"
+                                : "blue-gray"
+                            }
+                            onClick={handleLogOutClick}
                             className="flex items-center gap-4 px-4 capitalize"
                             fullWidth
                           >

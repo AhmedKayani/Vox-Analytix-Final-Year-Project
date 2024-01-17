@@ -33,7 +33,7 @@ export function LineChart({ data, title }) {
   // };
 
   const options = {
-    responsive: true,
+    // responsive: true,
     plugins: {
       legend: {
         position: "top",

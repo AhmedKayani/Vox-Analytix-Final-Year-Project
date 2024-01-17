@@ -44,14 +44,15 @@ export function Dashboard() {
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
       <Sidenav
+        role="Analyst"
         routes={analystRoutes}
         brandImg={
           sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
         }
       />
       <div className="p-4 xl:ml-80">
-        <DashboardNavbar />
-        <Configurator />
+        <DashboardNavbar dashboardType="dashboard" />
+        {/* <Configurator /> */}
         <IconButton
           size="lg"
           color="white"

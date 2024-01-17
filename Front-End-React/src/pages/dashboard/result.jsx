@@ -11,6 +11,8 @@ import {
   faFaceSurprise, // For Surprise
 } from "@fortawesome/free-solid-svg-icons";
 
+import { LineChart, BarChart, PieChart } from "@/widgets/charts";
+
 // Imported to get file from the Upload Audio Page, specifically from the useNavigate hook in the DropzoneUpload component.
 import { useLocation } from "react-router-dom";
 
@@ -63,6 +65,13 @@ export function Result() {
    *
    **/
 
+  // This function converts the seconds to minutes and seconds to be displayed in the chips.
+  function convertSecondsToMinutesAndSeconds(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return { minutes, seconds: remainingSeconds };
+  }
+
   const [analysisData, setAnalysisData] = useState([]);
   const [selectedText, setSelectedText] = useState(null);
   const [startSeekTimeSec, setStartSeekTimeSec] = useState(0);
@@ -82,6 +91,110 @@ export function Result() {
         return res.data;
       }),
   });
+
+  // If the analysis data has been fetched, then prepare the data for the charts.
+
+  // Making data suitable for line chart
+  const emotionStyles = {
+    Anger: { color: "#EC4899", borderDash: [] },
+    Distress: { color: "#F97316", borderDash: [5, 5] }, // Dashed line
+    Disappointment: { color: "#3B82F6", borderDash: [5, 5] }, // Dashed line
+    Disgust: { color: "#64748B", borderDash: [] },
+    "Surprise (negative)": { color: "#84CC16", borderDash: [] },
+  };
+
+  // Prepare the data for the line chart
+  const chartData = {
+    labels: analysisData.map((d) => {
+      const secMin = convertSecondsToMinutesAndSeconds(d.time.begin);
+      // Make the minutes and seconds two digits if one
+      secMin.minutes = secMin.minutes.toString().padStart(2, "0");
+      secMin.seconds = secMin.seconds.toString().padStart(2, "0");
+      return `${secMin.minutes}:${secMin.seconds}`;
+    }), // Use the 'begin' time as the labellabel
+    datasets: Object.keys(emotionStyles).map((emotion) => {
+      const dataset = analysisData.map((d) => ({
+        x: d.time.begin,
+        y: d.emotions.find((e) => e.name === emotion).score,
+      }));
+
+      // Only show points at the x-axis ticks
+      const xAxisTicks = dataset.filter(
+        (d, i, arr) => i % Math.ceil(arr.length / 10) === 0
+      );
+      xAxisTicks.forEach((tick) => {
+        const point = dataset.find((d) => d.x === tick.x);
+        if (point) point.pointRadius = 5; // Show the point
+      });
+
+      return {
+        fill: true,
+        label: emotion,
+        data: dataset,
+        borderColor: emotionStyles[emotion].color, // Use the color from the mapping
+        borderDash: emotionStyles[emotion].borderDash, // Use the line style from the mapping
+        tension: 0.4, // Make the line smoother
+        pointRadius: 0, // Hide the points
+        pointHitRadius: 10, // Area where the point can be hovered
+      };
+    }),
+  };
+
+  // Mapping of emotions to colors
+  const emotionColors = {
+    Anger: "#EC4899",
+    Distress: "#F97316",
+    Disappointment: "#3B82F6",
+    Disgust: "#64748B",
+    "Surprise (negative)": "#84CC16",
+  };
+
+  // For Barchart Data
+  // Calculate the average score for each emotion
+  const emotionAverages = {};
+  Object.keys(emotionColors).forEach((emotion) => {
+    const scores = analysisData.flatMap((d) =>
+      d.emotions.filter((e) => e.name === emotion).map((e) => e.score)
+    );
+    emotionAverages[emotion] =
+      scores.reduce((a, b) => a + b, 0) / scores.length;
+  });
+
+  // Prepare the data for the chart
+  const barChartData = {
+    labels: Object.keys(emotionAverages),
+    datasets: [
+      {
+        data: Object.values(emotionAverages),
+        backgroundColor: Object.keys(emotionAverages).map(
+          (emotion) => emotionColors[emotion]
+        ),
+      },
+    ],
+  };
+
+  // For Pie Chart Data
+  // Calculate the total score for each emotion
+  const emotionTotals = {};
+  Object.keys(emotionColors).forEach((emotion) => {
+    const scores = analysisData.flatMap((d) =>
+      d.emotions.filter((e) => e.name === emotion).map((e) => e.score)
+    );
+    emotionTotals[emotion] = scores.reduce((a, b) => a + b, 0);
+  });
+
+  // Prepare the data for the chart
+  const PieChartData = {
+    labels: Object.keys(emotionTotals),
+    datasets: [
+      {
+        data: Object.values(emotionTotals),
+        backgroundColor: Object.keys(emotionTotals).map(
+          (emotion) => emotionColors[emotion]
+        ),
+      },
+    ],
+  };
 
   // This part is for the icons JSX elements. The icons are imported from font awesome.
   const angerIcon = <FontAwesomeIcon className="fa-2x" icon={faFaceAngry} />;
@@ -119,13 +232,13 @@ export function Result() {
         </div>
 
         {/* Show the progress circle while analyzing the call and fetching the emotions. */}
-        {isLoading && <Progress />}
+        {analysisData.length < 1 && !error && <Progress />}
 
         {/* Show the error message if there is an error while fetching the emotions. */}
         {error && <div>Something went wrong ...</div>}
 
         {/* Show the transcription box, emotions detected and result form if there is no error and the emotions are fetched. */}
-        {!isLoading && !error && (
+        {analysisData.length > 0 && (
           <>
             <div className="order-2 m-0 w-full p-0">
               <TranscriptionBox selectedText={selectedText} />
@@ -183,7 +296,18 @@ export function Result() {
                 icon={surpriseIcon}
               />
             </div>
-            <div className="order-4 w-full p-0 sm:w-2/3 sm:pr-2">
+
+            {/* Charts */}
+            <div className="order-4 m-0 w-full p-0">
+              <LineChart data={chartData} title="Emotion Scores Over Time" />
+            </div>
+            <div className="order-5 m-0 w-full p-0">
+              <BarChart data={barChartData} title="Average Emotion Scores" />
+            </div>
+            <div className="order-6 m-0 w-full p-0 sm:w-2/3 sm:pr-2">
+              <PieChart data={PieChartData} title="Emotion Distribution" />
+            </div>
+            <div className="order-7 w-full p-0 sm:w-2/3 sm:pr-2">
               {/* This is the form at the end where user will type the reason of call rejection. */}
               <QueryClientProvider client={queryClient}>
                 <ResultForm

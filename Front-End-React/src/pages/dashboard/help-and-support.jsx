@@ -4,7 +4,7 @@ import { CardWrapper } from "@/widgets/cards";
 
 import { Button, Textarea, Avatar, Typography } from "@material-tailwind/react";
 
-import { DataTable } from "@/widgets/charts";
+import { DataTableQueries } from "@/widgets/charts";
 
 // This component page will be a messaging page for the user to contact the admin for help and support.
 // The 2/3 of first row will contain a box for the user to type in their message and send it. The remaining 1/3 will contain another box that shows the image and name of the admin.
@@ -57,7 +57,7 @@ export function HelpAndSupport() {
         </CardWrapper>
       </div>
       <div className="mb-4 w-full">
-        <DataTable />
+        <DataTableQueries />
       </div>
     </div>
   );

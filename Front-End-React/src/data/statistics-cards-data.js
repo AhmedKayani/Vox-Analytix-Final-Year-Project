@@ -12,7 +12,7 @@ export const statisticsCardsData = [
     color: "green",
     icon: PhoneIcon,
     title: "Total Calls Analyzed",
-    value: "50",
+    value: "14",
     footer: {
       color: "text-green-500",
       value: "+55%",
@@ -34,7 +34,7 @@ export const statisticsCardsData = [
     color: "blue",
     icon: ClockIcon,
     title: "Average Call Duration",
-    value: "5 min.",
+    value: "3 min.",
     footer: {
       color: "text-blue-500",
       value: "2 min.",
@@ -45,7 +45,7 @@ export const statisticsCardsData = [
     color: "orange",
     icon: UserIcon,
     title: "Top Flagged Agent",
-    value: "John Doe",
+    value: "Ahmed Kayani",
     footer: {
       color: "text-orange-500",
       value: "+25%",
